@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Gabarito Penal">
+<meta name="theme-color" content="#24336b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body><title>Gabarito Penal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* Layout: app de uma coluna (máx. 560px); os casos aparecem como "autos" datilografados e cada resposta recebe um carimbo DEFERIDO/INDEFERIDO */
+:root{
+  --paper:#eef1f5; --card:#ffffff; --doc:#fbfaf6; --ink:#1a2340; --muted:#5b6580; --line:#d6dce6; --soft:#e4e9f2;
+  --toga:#24336b; --on-toga:#ffffff; --stamp:#c4362c; --ok:#1f8456; --gold:#b9840f;
+  --f-display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-doc:"Courier Prime","Courier New",ui-monospace,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e1321; --card:#171f33; --doc:#1c2439; --ink:#e6eaf3; --muted:#9aa4bc; --line:#2a3552; --soft:#212b44;
+    --toga:#9db0f0; --on-toga:#0e1321; --stamp:#ff6f61; --ok:#46c58b; --gold:#f2bb3d; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e1321; --card:#171f33; --doc:#1c2439; --ink:#e6eaf3; --muted:#9aa4bc; --line:#2a3552; --soft:#212b44;
+  --toga:#9db0f0; --on-toga:#0e1321; --stamp:#ff6f61; --ok:#46c58b; --gold:#f2bb3d; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper)}
+body{color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--toga);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 48px;display:flex;flex-direction:column;gap:18px}
+.display{font-family:var(--f-display);font-stretch:125%;font-weight:850;letter-spacing:-.01em;line-height:1.05;text-wrap:balance;margin:0}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* topo */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;flex-direction:column;gap:2px}
+.brand .display{font-size:1.45rem}
+.brand small{font-size:.78rem;color:var(--muted)}
+.icon{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:1rem;flex:none}
+
+/* ficha do servidor */
+.ficha{background:var(--toga);color:var(--on-toga);border-radius:var(--r);padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;position:relative;overflow:hidden}
+.seal{width:76px;height:76px;border-radius:50%;border:3px double currentColor;display:grid;place-items:center;text-align:center;transform:rotate(-8deg);flex:none}
+.seal b{font-family:var(--f-display);font-stretch:125%;font-size:1.7rem;line-height:1;display:block}
+.seal span{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase}
+.ficha h2{font-family:var(--f-display);font-stretch:110%;font-size:1.25rem;margin:0 0 6px;font-weight:800}
+.xpbar{height:10px;border-radius:6px;background:color-mix(in srgb,var(--on-toga) 22%,transparent);overflow:hidden}
+.xpbar i{display:block;height:100%;background:var(--gold);border-radius:6px;transition:width .5s}
+.fmeta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;margin-top:8px;opacity:.92}
+
+/* botões */
+.btn{border:0;border-radius:12px;padding:15px 18px;font-weight:800;font-size:1rem;background:var(--toga);color:var(--on-toga);display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;width:100%;text-align:center}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.red{background:var(--stamp);color:#fff}
+.row{display:flex;gap:10px}
+.row>*{flex:1;min-width:0}
+
+.cta{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px;text-align:left;width:100%}
+.cta .badge{width:52px;height:52px;border-radius:12px;background:var(--stamp);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.3rem;flex:none}
+.cta div{min-width:0}
+.cta b{display:block;font-size:1.05rem}
+.cta span{font-size:.85rem;color:var(--muted)}
+.cta .go{margin-left:auto;font-size:1.4rem;color:var(--muted)}
+
+section{display:flex;flex-direction:column;gap:10px}
+.shead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.shead h3{font-family:var(--f-display);font-stretch:112%;font-size:1.05rem;margin:0;font-weight:800}
+
+/* pauta do dia */
+.pauta{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:6px 14px}
+.mis{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.mis:last-child{border-bottom:0}
+.box{width:22px;height:22px;border-radius:6px;border:2px solid var(--line);display:grid;place-items:center;font-size:.8rem;flex:none;color:#fff}
+.mis.done .box{background:var(--ok);border-color:var(--ok)}
+.mis.done .t{text-decoration:line-through;color:var(--muted)}
+.mis .x{margin-left:auto;font-size:.8rem;color:var(--muted)}
+
+/* modos */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px;position:relative}
+.mode .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--soft);color:var(--toga)}
+.mode .ic svg{width:20px;height:20px}
+.mode b{font-size:1rem;line-height:1.15}
+.mode span{font-size:.8rem;color:var(--muted);line-height:1.3}
+.mode .pill{position:absolute;top:12px;right:12px;background:var(--stamp);color:#fff;font-size:.72rem;font-weight:800;padding:2px 8px;border-radius:20px}
+.mode .rec{font-size:.72rem;color:var(--gold);font-weight:700;margin-top:auto}
+
+/* mapa de domínio */
+.heat{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px}
+.ht{border:0;border-radius:8px;padding:8px 2px;font-size:.78rem;font-weight:800;background:var(--soft);color:var(--ink)}
+.ht.h1{background:color-mix(in srgb,var(--ok) 18%,var(--soft))}
+.ht.h2{background:color-mix(in srgb,var(--ok) 35%,var(--soft))}
+.ht.h3{background:color-mix(in srgb,var(--ok) 55%,var(--soft))}
+.ht.h4{background:color-mix(in srgb,var(--ok) 75%,var(--soft));color:#fff}
+.ht.h5{background:var(--ok);color:#fff}
+.ht.bad{box-shadow:inset 0 0 0 2px var(--stamp)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.75rem;color:var(--muted)}
+
+/* carimbos (conquistas) */
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.stp{border:2px dashed var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:.72rem;color:var(--muted);display:flex;flex-direction:column;gap:4px;align-items:center}
+.stp b{font-size:.78rem;line-height:1.15}
+.stp.on{border:2.5px solid var(--stamp);color:var(--stamp);transform:rotate(-3deg)}
+.stp.on:nth-child(2n){transform:rotate(2deg)}
+.stp i{font-style:normal;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1rem}
+
+.foot{font-size:.78rem;color:var(--muted);display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.foot button{align-self:flex-start;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:.8rem;color:var(--muted)}
+
+/* navegação */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--paper);z-index:5;padding-block:8px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.bar .brand{min-width:0}
+.bar .display{font-size:1.15rem}
+.back{border:1.5px solid var(--line);background:var(--card);border-radius:22px;padding:8px 14px 8px 10px;font-weight:800;font-size:.92rem;display:inline-flex;align-items:center;gap:6px;min-height:44px;flex:none;color:var(--ink)}
+.back .ch{font-size:1.3rem;line-height:1;margin-top:-2px}
+.quitbar{background:var(--card);border:2px solid var(--stamp);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px}
+.quitbar span{font-size:.9rem;color:var(--muted)}
+.rules{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;text-align:left}
+
+/* rodada */
+.rbar{display:flex;align-items:center;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--paper);z-index:5;padding-block:6px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.rtitle{font-weight:800;font-size:.95rem;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rstat{font-weight:800;font-size:.95rem;display:flex;gap:10px;align-items:center}
+.hearts{color:var(--stamp);letter-spacing:2px;font-size:1.05rem}
+.pbar,.tbar{height:8px;background:var(--soft);border-radius:6px;overflow:hidden}
+.pbar i,.tbar i{display:block;height:100%;background:var(--toga);transition:width .3s}
+.tbar i{background:var(--gold);transition:width .25s linear}
+.tbar.low i{background:var(--stamp)}
+.combo{font-size:.8rem;font-weight:800;color:var(--muted);height:1.2em}
+.combo.on{color:var(--gold)}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.chip{align-self:flex-start;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--toga);border:1.5px solid currentColor;border-radius:6px;padding:3px 8px}
+.prompt{font-size:1.08rem;font-weight:650;margin:0;text-wrap:pretty}
+.doc{font-family:var(--f-doc);font-size:.98rem;background:var(--doc);border:1px solid var(--line);border-left:4px solid var(--toga);border-radius:6px;padding:14px;line-height:1.55}
+.doc .gap{display:inline-block;min-width:5.5em;border-bottom:2px solid var(--stamp);color:var(--stamp);font-weight:700;text-align:center}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opts.two{flex-direction:row}
+.opts.two .opt{justify-content:center;font-size:1.05rem;font-weight:800;padding:18px 10px}
+.opt{border:1.5px solid var(--line);background:var(--card);border-radius:11px;padding:13px 14px;text-align:left;display:flex;gap:12px;align-items:flex-start;font-size:.97rem;line-height:1.35;min-height:52px;transition:transform .08s}
+.opt:active{transform:scale(.985)}
+.opt .lt{width:26px;height:26px;border-radius:7px;background:var(--soft);display:grid;place-items:center;font-weight:800;font-size:.82rem;flex:none}
+.opt span:last-child{min-width:0}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.opt.ok .lt{background:var(--ok);color:#fff}
+.opt.bad{border-color:var(--stamp);background:color-mix(in srgb,var(--stamp) 10%,var(--card))}
+.opt.bad .lt{background:var(--stamp);color:#fff}
+.opt[disabled]{cursor:default}
+.opt.dim{opacity:.55}
+.stampmark{position:absolute;top:16px;right:12px;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.25rem;letter-spacing:.06em;padding:4px 10px;border:3px solid currentColor;border-radius:6px;transform:rotate(-12deg);pointer-events:none;animation:stamp .32s cubic-bezier(.2,1.6,.4,1) both;background:color-mix(in srgb,var(--card) 70%,transparent)}
+.stampmark.ok{color:var(--ok)}
+.stampmark.bad{color:var(--stamp)}
+@keyframes stamp{from{transform:rotate(-12deg) scale(2.4);opacity:0}to{transform:rotate(-12deg) scale(1);opacity:1}}
+.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.fb{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px;border-top:5px solid var(--ok)}
+.fb.bad{border-top-color:var(--stamp)}
+.fb h4{margin:0;font-family:var(--f-display);font-stretch:115%;font-size:1.1rem}
+.fb p{margin:0;font-size:.95rem}
+.fund{font-size:.8rem;font-weight:700;color:var(--toga)}
+.dica{font-size:.88rem;background:var(--soft);border-radius:8px;padding:10px 12px}
+.dica b{color:var(--gold)}
+.gain{color:var(--gold);font-weight:800}
+.next{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+
+/* fim da rodada */
+.sent{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 18px;display:flex;flex-direction:column;gap:14px;text-align:center;align-items:center;position:relative;overflow:hidden}
+.sent .display{font-size:1.7rem}
+.stars{font-size:2.1rem;letter-spacing:6px;color:var(--gold)}
+.stars .off{color:var(--line)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%}
+.kpi{background:var(--soft);border-radius:10px;padding:10px 4px}
+.kpi b{display:block;font-size:1.2rem;font-family:var(--f-display);font-stretch:110%}
+.kpi span{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.banner{width:100%;border-radius:10px;padding:12px;background:var(--gold);color:#1a1300;font-weight:800}
+.errs{display:flex;flex-direction:column;gap:8px}
+.err{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--stamp);border-radius:10px;padding:12px 14px;font-size:.9rem;display:flex;flex-direction:column;gap:6px}
+.err .q{font-weight:650}
+.err .a{color:var(--ok);font-weight:700}
+
+/* mapa da campanha */
+.trail{display:flex;flex-direction:column;gap:0;position:relative}
+.node{display:flex;gap:14px;align-items:center;text-align:left;background:none;border:0;padding:10px 0;width:100%;position:relative}
+.node .dot{width:54px;height:54px;border-radius:50%;background:var(--toga);color:var(--on-toga);display:grid;place-items:center;font-family:var(--f-display);font-stretch:125%;font-weight:900;font-size:1.25rem;flex:none;position:relative;z-index:1;border:4px solid var(--paper)}
+.node:nth-child(2n) {padding-left:34px}
+.node .info{min-width:0;flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.node .info b{display:block;font-size:.98rem}
+.node .info span{font-size:.8rem;color:var(--muted)}
+.node .st{color:var(--gold);font-size:.95rem;letter-spacing:2px}
+.node.lock .dot{background:var(--soft);color:var(--muted)}
+.node.lock .info{opacity:.6}
+.node.boss .dot{background:var(--stamp);color:#fff}
+.node.done .dot{background:var(--ok);color:#fff}
+
+/* vade mecum */
+.search{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font:inherit;color:var(--ink)}
+details.art{background:var(--card);border:1px solid var(--line);border-radius:12px}
+details.art summary{list-style:none;padding:13px 14px;display:flex;gap:10px;align-items:center;cursor:pointer}
+details.art summary::-webkit-details-marker{display:none}
+details.art summary .n{font-weight:800;font-size:.8rem;color:var(--toga);min-width:52px}
+details.art summary .t{flex:1;min-width:0;font-weight:650;font-size:.95rem}
+.mdot{width:10px;height:10px;border-radius:50%;background:var(--soft);flex:none}
+.mdot.h1,.mdot.h2{background:color-mix(in srgb,var(--ok) 40%,var(--soft))}
+.mdot.h3,.mdot.h4{background:color-mix(in srgb,var(--ok) 75%,var(--soft))}
+.mdot.h5{background:var(--ok)}
+.abody{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px;font-size:.93rem}
+.pena{display:inline-flex;gap:8px;align-items:center;font-weight:700;font-size:.85rem;flex-wrap:wrap}
+.reg{font-size:.7rem;font-weight:900;padding:2px 7px;border-radius:5px;color:#fff;background:var(--toga)}
+.reg.D{background:var(--gold);color:#1a1300}
+.abody ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+.vhead{font-family:var(--f-display);font-stretch:112%;font-weight:800;font-size:.95rem;margin:8px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:30px;font-weight:700;font-size:.9rem;z-index:20;max-width:calc(100% - 32px);text-align:center;animation:fade 2.6s forwards}
+@keyframes fade{0%{opacity:0;transform:translate(-50%,10px)}10%,85%{opacity:1;transform:translate(-50%,0)}100%{opacity:0}}
+.howto{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;font-size:.9rem}
+.howto summary{font-weight:800;cursor:pointer}
+.howto ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div id="app"></div>
+
+<script>
+/* ================== CONTEÚDO: CÓDIGO PENAL ================== */
+const VARAS=[
+ {id:1,n:"Papéis e Selos",s:"Arts. 293 a 296 e 303",arts:["293","294","295","296","303"]},
+ {id:2,n:"Documentos Falsos",s:"Arts. 297 a 302, 304 e 305",arts:["297","298","299","300","301","302","304","305"]},
+ {id:3,n:"Identidade e Certames",s:"Arts. 307, 308 e 311-A",arts:["307","308","311-A"]},
+ {id:4,n:"Peculato e Sistemas",s:"Arts. 312 a 315 e 327",arts:["312","313","313-A","313-B","314","315","327"]},
+ {id:5,n:"Concussão e Corrupção",s:"Arts. 316, 317, 319, 319-A e 320",arts:["316","317","319","319-A","320"]},
+ {id:6,n:"Deveres do Cargo",s:"Arts. 321 a 326",arts:["321","322","323","324","325","326"]},
+ {id:7,n:"Particular x Administração",s:"Arts. 328 a 333, 336 e 337",arts:["328","329","330","331","332","333","336","337"]},
+ {id:8,n:"Mentiras à Justiça",s:"Arts. 339 a 344",arts:["339","340","341","342","343","344"]},
+ {id:9,n:"Justiça pelas Próprias Mãos",s:"Arts. 345 a 347, 357 e 359",arts:["345","346","347","357","359"]}
+];
+
+const PD="Reclusão, de 1 a 5 anos, e multa (doc. público); reclusão, de 1 a 3 anos, e multa (doc. particular)";
+const ARTS=[
+ // VARA 1
+ {id:"293",n:"Falsificação de papéis públicos",t:"Falsificar, fabricando-os ou alterando-os: selo destinado a controle tributário, papel selado ou qualquer papel de emissão legal destinado à arrecadação de tributo; papel de crédito público que não seja moeda de curso legal; vale postal; cautela de penhor, caderneta de depósito de caixa econômica ou de estabelecimento mantido por entidade de direito público; talão, recibo, guia, alvará ou documento relativo a arrecadação de rendas públicas ou a depósito ou caução de responsabilidade do poder público; bilhete, passe ou conhecimento de empresa de transporte administrada pelo poder público.",pena:"Reclusão, de 2 a 8 anos, e multa",r:"R",o:["§1º Incorre na mesma pena quem usa, guarda, possui ou detém qualquer desses papéis falsificados (e quem comercializa selo tributário falsificado).","§2º Suprimir carimbo ou sinal indicativo de inutilização, para tornar os papéis novamente utilizáveis: reclusão, de 1 a 4 anos, e multa. §3º: mesma pena para quem usa esses papéis.","§4º Quem usa ou restitui à circulação, embora recebido de boa-fé, papel falsificado ou alterado, depois de conhecer a falsidade: detenção, de 6 meses a 2 anos, ou multa."],d:"Papéis públicos são os “papéis do dinheiro do Estado”: selo tributário, guia, alvará, vale postal, passe. Pena alta: 2 a 8."},
+ {id:"294",n:"Petrechos de falsificação",t:"Fabricar, adquirir, fornecer, a título oneroso ou gratuito, possuir ou guardar objeto especialmente destinado à falsificação de qualquer dos papéis referidos no art. 293.",pena:"Reclusão, de 1 a 3 anos, e multa",r:"R",o:[],d:"Petrechos são as ferramentas do falsário. Guardar a máquina já é crime, mesmo sem falsificar nada."},
+ {id:"295",n:"Aumento de pena: funcionário público (arts. 293 e 294)",t:"Se o agente é funcionário público, e comete o crime prevalecendo-se do cargo, aumenta-se a pena de sexta parte.",pena:null,r:null,noq:1,o:[],d:"Funcionário + falsificação, prevalecendo-se do cargo = +1/6. A mesma fração aparece nos arts. 296, 297 e 299."},
+ {id:"296",n:"Falsificação do selo ou sinal público",t:"Falsificar, fabricando-os ou alterando-os: selo público destinado a autenticar atos oficiais da União, de Estado ou de Município; selo ou sinal atribuído por lei a entidade de direito público, ou a autoridade, ou sinal público de tabelião.",pena:"Reclusão, de 2 a 6 anos, e multa",r:"R",o:["§1º Mesmas penas: quem faz uso do selo ou sinal falsificado; quem utiliza indevidamente o selo ou sinal verdadeiro em prejuízo de outrem ou em proveito próprio ou alheio; quem altera, falsifica ou faz uso indevido de marcas, logotipos, siglas ou símbolos de órgãos ou entidades da Administração Pública.","§2º Funcionário público que comete o crime prevalecendo-se do cargo: pena aumentada de sexta parte."],d:"Selo ou sinal público é o “carimbo oficial”, inclusive o sinal público de tabelião. Mesma pena do documento público: 2 a 6."},
+ {id:"303",n:"Reprodução ou adulteração de selo ou peça filatélica",t:"Reproduzir ou alterar selo ou peça filatélica que tenha valor para coleção, salvo quando a reprodução ou a alteração está visivelmente anotada na face ou no verso do selo ou peça.",pena:"Detenção, de 1 a 3 anos, e multa",r:"D",o:["Parágrafo único: incorre nas mesmas penas quem, para fins de comércio, faz uso do selo ou peça filatélica."],d:"Filatelia é selo de coleção. Se a cópia está anotada na face ou no verso, não há crime."},
+ // VARA 2
+ {id:"297",n:"Falsificação de documento público",t:"Falsificar, no todo ou em parte, documento público, ou alterar documento público verdadeiro.",pena:"Reclusão, de 2 a 6 anos, e multa",r:"R",o:["§1º Funcionário público que comete o crime prevalecendo-se do cargo: pena aumentada de sexta parte.","§2º Equiparam-se a documento público: o emanado de entidade paraestatal, o título ao portador ou transmissível por endosso, as ações de sociedade comercial, os livros mercantis e o testamento particular.","§§3º e 4º: falsidades ligadas à Previdência Social (ex.: inserir pessoa sem qualidade de segurado na folha de pagamento; declaração falsa ou omissão de dados na CTPS)."],d:"Equiparados a público: Paraestatal, Título ao portador/endosso, Ações de sociedade comercial, Livros mercantis e Testamento particular. Cartão de crédito NÃO está aqui (é particular)."},
+ {id:"298",n:"Falsificação de documento particular",t:"Falsificar, no todo ou em parte, documento particular ou alterar documento particular verdadeiro.",pena:"Reclusão, de 1 a 5 anos, e multa",r:"R",o:["Parágrafo único: equipara-se a documento particular o cartão de crédito ou débito."],d:"Cartão de crédito ou débito = documento PARTICULAR. Pena de 1 a 5."},
+ {id:"299",n:"Falsidade ideológica",t:"Omitir, em documento público ou particular, declaração que dele devia constar, ou nele inserir ou fazer inserir declaração falsa ou diversa da que devia ser escrita, com o fim de prejudicar direito, criar obrigação ou alterar a verdade sobre fato juridicamente relevante.",pena:PD,r:"R",o:["Parágrafo único: se o agente é funcionário público e comete o crime prevalecendo-se do cargo, ou se a falsificação ou alteração é de assentamento de registro civil, aumenta-se a pena de sexta parte."],d:"Ideológica: o papel é verdadeiro, o conteúdo é mentiroso. Público 1 a 5; particular 1 a 3."},
+ {id:"300",n:"Falso reconhecimento de firma ou letra",t:"Reconhecer, como verdadeira, no exercício de função pública, firma ou letra que o não seja.",pena:PD,r:"R",o:[],d:"Crime de quem tem fé pública (ex.: tabelião). Penas iguais às da falsidade ideológica."},
+ {id:"301",n:"Certidão ou atestado ideologicamente falso",t:"Atestar ou certificar falsamente, em razão de função pública, fato ou circunstância que habilite alguém a obter cargo público, isenção de ônus ou de serviço de caráter público, ou qualquer outra vantagem.",pena:"Detenção, de 2 meses a 1 ano",r:"D",o:["§1º Falsidade material de atestado ou certidão: detenção, de 3 meses a 2 anos.","§2º Se o crime é praticado com o fim de lucro, aplica-se, além da pena privativa de liberdade, a de multa."],d:"Atestado do servidor: ideológico 2 meses a 1 ano; material (§1º) 3 meses a 2 anos. Fim de lucro: + multa."},
+ {id:"301-1",p:"301",al:"Art. 301, §1º",n:"Falsidade material de atestado ou certidão",t:"Falsificar, no todo ou em parte, atestado ou certidão, ou alterar o teor de certidão ou de atestado verdadeiro, para prova de fato ou circunstância que habilite alguém a obter cargo público, isenção de ônus ou de serviço de caráter público, ou qualquer outra vantagem.",pena:"Detenção, de 3 meses a 2 anos",r:"D",o:[],d:"Aqui o próprio papel é forjado ou alterado (falsidade material). Qualquer pessoa pode praticar."},
+ {id:"302",n:"Falsidade de atestado médico",t:"Dar o médico, no exercício da sua profissão, atestado falso.",pena:"Detenção, de 1 mês a 1 ano",r:"D",o:["Parágrafo único: se o crime é cometido com o fim de lucro, aplica-se também multa."],d:"Crime próprio do médico. Pena baixinha: 1 mês a 1 ano (+ multa se houver fim de lucro)."},
+ {id:"304",n:"Uso de documento falso",t:"Fazer uso de qualquer dos papéis falsificados ou alterados, a que se referem os arts. 297 a 302.",pena:"A cominada à falsificação ou à alteração",r:null,o:["Súmula 546 do STJ: a competência é definida pela entidade ou órgão ao qual o documento falso foi apresentado.","Súmula 17 do STJ: quando o falso se exaure no estelionato, sem mais potencialidade lesiva, é por este absorvido."],d:"O uso não tem pena própria: “pega emprestada” a pena da falsificação correspondente."},
+ {id:"305",n:"Supressão de documento",t:"Destruir, suprimir ou ocultar, em benefício próprio ou de outrem, ou em prejuízo alheio, documento público ou particular verdadeiro, de que não podia dispor.",pena:"Reclusão, de 2 a 6 anos, e multa (doc. público); reclusão, de 1 a 5 anos, e multa (doc. particular)",r:"R",o:[],d:"Documento VERDADEIRO destruído ou escondido. Penas: público 2 a 6; particular 1 a 5 (iguais às falsificações material)."},
+ // VARA 3
+ {id:"307",n:"Falsa identidade",t:"Atribuir-se ou atribuir a terceiro falsa identidade para obter vantagem, em proveito próprio ou alheio, ou para causar dano a outrem.",pena:"Detenção, de 3 meses a 1 ano, ou multa",r:"D",o:["Crime subsidiário: só se aplica se o fato não constitui elemento de crime mais grave.","Súmula 522 do STJ: a conduta de atribuir-se falsa identidade perante autoridade policial é típica, ainda que em situação de alegada autodefesa."],d:"Mentir o próprio nome à polícia é crime, sim (Súmula 522). Aqui não há uso de documento: é a mentira sobre quem se é."},
+ {id:"308",n:"Uso de documento de identidade alheia",t:"Usar, como próprio, passaporte, título de eleitor, caderneta de reservista ou qualquer documento de identidade alheia ou ceder a outrem, para que dele se utilize, documento dessa natureza, próprio ou de terceiro.",pena:"Detenção, de 4 meses a 2 anos, e multa",r:"D",o:["Crime subsidiário: se o fato não constitui elemento de crime mais grave."],d:"308 = documento VERDADEIRO, mas de outra pessoa (ou ceder o seu para alguém usar)."},
+ {id:"311-A",n:"Fraudes em certames de interesse público",t:"Utilizar ou divulgar, indevidamente, com o fim de beneficiar a si ou a outrem, ou de comprometer a credibilidade do certame, conteúdo sigiloso de: concurso público; avaliação ou exame públicos; processo seletivo para ingresso no ensino superior; ou exame ou processo seletivo previstos em lei.",pena:"Reclusão, de 1 a 4 anos, e multa",r:"R",o:["§1º Nas mesmas penas incorre quem permite ou facilita, por qualquer meio, o acesso de pessoas não autorizadas às informações sigilosas.","§2º Se da ação ou omissão resulta dano à administração pública: reclusão, de 2 a 6 anos, e multa.","§3º Aumenta-se a pena de 1/3 se o fato é cometido por funcionário público."],d:"Vazou prova (concurso, vestibular, exame previsto em lei)? 311-A. Dano à administração: 2 a 6. Funcionário: +1/3."},
+ // VARA 4
+ {id:"312",n:"Peculato",t:"Apropriar-se o funcionário público de dinheiro, valor ou qualquer outro bem móvel, público ou particular, de que tem a posse em razão do cargo, ou desviá-lo, em proveito próprio ou alheio.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:["§1º Peculato-furto: mesma pena se o funcionário, embora não tendo a posse, subtrai ou concorre para que seja subtraído, valendo-se da facilidade que a qualidade de funcionário lhe proporciona.","§2º Peculato culposo: detenção, de 3 meses a 1 ano.","§3º No culposo, a reparação do dano, se precede à sentença irrecorrível, extingue a punibilidade; se lhe é posterior, reduz de metade a pena imposta.","Súmula 599 do STJ: o princípio da insignificância é inaplicável aos crimes contra a administração pública."],d:"Apropriar (fica pra si) ou desviar (dá outro destino). Bem pode ser público OU particular. Culposo: reparou antes da sentença irrecorrível = extingue; depois = metade da pena."},
+ {id:"312-1",p:"312",al:"Art. 312, §1º",n:"Peculato-furto",t:"Embora não tendo a posse do dinheiro, valor ou bem, o funcionário o subtrai, ou concorre para que seja subtraído, em proveito próprio ou alheio, valendo-se de facilidade que lhe proporciona a qualidade de funcionário.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:[],d:"Não tinha a posse, mas usou a facilidade do cargo (crachá, chave, acesso) para subtrair."},
+ {id:"312-2",p:"312",al:"Art. 312, §2º",n:"Peculato culposo",t:"Se o funcionário concorre culposamente para o crime de outrem.",pena:"Detenção, de 3 meses a 1 ano",r:"D",o:["§3º Reparação do dano antes da sentença irrecorrível extingue a punibilidade; depois, reduz de metade a pena imposta."],d:"Descuido do servidor que permite o crime de outra pessoa. Único peculato com reparação que extingue a punibilidade."},
+ {id:"313",n:"Peculato mediante erro de outrem",t:"Apropriar-se de dinheiro ou qualquer utilidade que, no exercício do cargo, recebeu por erro de outrem.",pena:"Reclusão, de 1 a 4 anos, e multa",r:"R",o:[],d:"Também chamado de peculato-estelionato. O erro é espontâneo da vítima; o funcionário só se aproveita."},
+ {id:"313-A",n:"Inserção de dados falsos em sistema de informações",t:"Inserir ou facilitar, o funcionário autorizado, a inserção de dados falsos, alterar ou excluir indevidamente dados corretos nos sistemas informatizados ou bancos de dados da Administração Pública com o fim de obter vantagem indevida para si ou para outrem ou para causar dano.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:[],d:"313-A mexe nos DADOS (funcionário autorizado) e tem pena de peculato: 2 a 12."},
+ {id:"313-B",n:"Modificação ou alteração não autorizada de sistema de informações",t:"Modificar ou alterar, o funcionário, sistema de informações ou programa de informática sem autorização ou solicitação de autoridade competente.",pena:"Detenção, de 3 meses a 2 anos, e multa",r:"D",o:["Parágrafo único: as penas são aumentadas de 1/3 até a metade se da modificação ou alteração resulta dano para a Administração Pública ou para o administrado."],d:"313-B mexe no SISTEMA/PROGRAMA, e pena de detenção. Dados = A (alto, reclusão); programa = B (baixo, detenção)."},
+ {id:"314",n:"Extravio, sonegação ou inutilização de livro ou documento",t:"Extraviar livro oficial ou qualquer documento, de que tem a guarda em razão do cargo; sonegá-lo ou inutilizá-lo, total ou parcialmente.",pena:"Reclusão, de 1 a 4 anos",r:"R",o:["Subsidiário: se o fato não constitui crime mais grave.","Atenção: não há multa cominada."],d:"314 é do funcionário que TEM A GUARDA do documento. Se quem age é outra pessoa sobre documento custodiado, pense no 337."},
+ {id:"315",n:"Emprego irregular de verbas ou rendas públicas",t:"Dar às verbas ou rendas públicas aplicação diversa da estabelecida em lei.",pena:"Detenção, de 1 a 3 meses, ou multa",r:"D",o:[],d:"O dinheiro continua no serviço público, só que em destino diferente do previsto em lei. Não há proveito próprio (se houver, é peculato)."},
+ {id:"327",n:"Conceito de funcionário público",t:"Considera-se funcionário público, para os efeitos penais, quem, embora transitoriamente ou sem remuneração, exerce cargo, emprego ou função pública.",pena:null,r:null,noq:1,o:["§1º Equipara-se a funcionário público quem exerce cargo, emprego ou função em entidade paraestatal, e quem trabalha para empresa prestadora de serviço contratada ou conveniada para a execução de atividade típica da Administração Pública.","§2º A pena será aumentada da terça parte quando os autores forem ocupantes de cargos em comissão ou de função de direção ou assessoramento de órgão da administração direta, sociedade de economia mista, empresa pública ou fundação instituída pelo poder público."],d:"Transitório e sem salário também conta (ex.: mesário, jurado). Cargo em comissão, direção ou assessoramento: +1/3."},
+ // VARA 5
+ {id:"316",n:"Concussão",t:"Exigir, para si ou para outrem, direta ou indiretamente, ainda que fora da função ou antes de assumi-la, mas em razão dela, vantagem indevida.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:["Pena alterada pelo Pacote Anticrime (Lei 13.964/2019): antes era de 2 a 8 anos.","Crime formal: consuma-se com a exigência, ainda que a vantagem não seja entregue."],d:"Concussão = EXIGIR (o funcionário impõe). Pena igual à da corrupção: 2 a 12."},
+ {id:"316-1",p:"316",al:"Art. 316, §1º",n:"Excesso de exação",t:"Se o funcionário exige tributo ou contribuição social que sabe ou deveria saber indevido, ou, quando devido, emprega na cobrança meio vexatório ou gravoso, que a lei não autoriza.",pena:"Reclusão, de 3 a 8 anos, e multa",r:"R",o:[],d:"Exação = cobrança de tributo. Cobrou o indevido OU cobrou o devido de forma vexatória: 3 a 8."},
+ {id:"316-2",p:"316",al:"Art. 316, §2º",n:"Desvio do tributo recebido indevidamente",t:"Se o funcionário desvia, em proveito próprio ou de outrem, o que recebeu indevidamente para recolher aos cofres públicos.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:[],d:"Recebeu indevidamente para recolher aos cofres e desviou: 2 a 12."},
+ {id:"317",n:"Corrupção passiva",t:"Solicitar ou receber, para si ou para outrem, direta ou indiretamente, ainda que fora da função ou antes de assumi-la, mas em razão dela, vantagem indevida, ou aceitar promessa de tal vantagem.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:["§1º A pena é aumentada de 1/3 se, em consequência da vantagem ou promessa, o funcionário retarda ou deixa de praticar qualquer ato de ofício ou o pratica infringindo dever funcional.","§2º Corrupção passiva privilegiada: detenção, de 3 meses a 1 ano, ou multa."],d:"Corrupção passiva = Solicitar, Receber ou Aceitar promessa (SRA). Concussão exige; corrupção pede ou aceita."},
+ {id:"317-2",p:"317",al:"Art. 317, §2º",n:"Corrupção passiva privilegiada",t:"Se o funcionário pratica, deixa de praticar ou retarda ato de ofício, com infração de dever funcional, cedendo a pedido ou influência de outrem.",pena:"Detenção, de 3 meses a 1 ano, ou multa",r:"D",o:[],d:"Cedeu a PEDIDO ou INFLUÊNCIA de outra pessoa, sem vantagem. Na prevaricação, o motivo é interesse ou sentimento PESSOAL."},
+ {id:"319",n:"Prevaricação",t:"Retardar ou deixar de praticar, indevidamente, ato de ofício, ou praticá-lo contra disposição expressa de lei, para satisfazer interesse ou sentimento pessoal.",pena:"Detenção, de 3 meses a 1 ano, e multa",r:"D",o:[],d:"Prevaricação = “pra mim”: interesse ou sentimento PESSOAL (amizade, vingança, preguiça interessada)."},
+ {id:"319-A",n:"Prevaricação imprópria (celular no presídio)",t:"Deixar o Diretor de Penitenciária e/ou agente público, de cumprir seu dever de vedar ao preso o acesso a aparelho telefônico, de rádio ou similar, que permita a comunicação com outros presos ou com o ambiente externo.",pena:"Detenção, de 3 meses a 1 ano",r:"D",o:[],d:"Omissão do diretor/agente quanto a celular ou rádio com o preso. Mesma faixa da prevaricação, mas sem multa."},
+ {id:"320",n:"Condescendência criminosa",t:"Deixar o funcionário, por indulgência, de responsabilizar subordinado que cometeu infração no exercício do cargo ou, quando lhe falte competência, não levar o fato ao conhecimento da autoridade competente.",pena:"Detenção, de 15 dias a 1 mês, ou multa",r:"D",o:[],d:"Condescendência = “dó” do subordinado (indulgência). Uma das menores penas: 15 dias a 1 mês."},
+ // VARA 6
+ {id:"321",n:"Advocacia administrativa",t:"Patrocinar, direta ou indiretamente, interesse privado perante a administração pública, valendo-se da qualidade de funcionário.",pena:"Detenção, de 1 a 3 meses, ou multa",r:"D",o:["Parágrafo único: se o interesse é ilegítimo, detenção, de 3 meses a 1 ano, além da multa."],d:"Interesse LEGÍTIMO já é crime. Se ilegítimo, a pena sobe (3 meses a 1 ano + multa)."},
+ {id:"322",n:"Violência arbitrária",t:"Praticar violência, no exercício de função ou a pretexto de exercê-la.",pena:"Detenção, de 6 meses a 3 anos, além da pena correspondente à violência",r:"D",o:[],d:"Funcionário que agride no exercício (ou a pretexto) da função. Soma-se a pena da violência."},
+ {id:"323",n:"Abandono de função",t:"Abandonar cargo público, fora dos casos permitidos em lei.",pena:"Detenção, de 15 dias a 1 mês, ou multa",r:"D",o:["§1º Se do fato resulta prejuízo público: detenção, de 3 meses a 1 ano, e multa.","§2º Se o fato ocorre em lugar compreendido na faixa de fronteira: detenção, de 1 a 3 anos, e multa."],d:"Escada do abandono: simples 15 dias a 1 mês; com prejuízo 3 meses a 1 ano; faixa de fronteira 1 a 3 anos."},
+ {id:"324",n:"Exercício funcional ilegalmente antecipado ou prolongado",t:"Entrar no exercício de função pública antes de satisfeitas as exigências legais, ou continuar a exercê-la, sem autorização, depois de saber oficialmente que foi exonerado, removido, substituído ou suspenso.",pena:"Detenção, de 15 dias a 1 mês, ou multa",r:"D",o:[],d:"Começou cedo demais ou ficou depois da hora (já sabendo oficialmente da exoneração, remoção, substituição ou suspensão)."},
+ {id:"325",n:"Violação de sigilo funcional",t:"Revelar fato de que tem ciência em razão do cargo e que deva permanecer em segredo, ou facilitar-lhe a revelação.",pena:"Detenção, de 6 meses a 2 anos, ou multa",r:"D",o:["Subsidiário: se o fato não constitui crime mais grave.","§1º Nas mesmas penas incorre quem: I – permite ou facilita, mediante atribuição, fornecimento e empréstimo de senha ou qualquer outra forma, o acesso de pessoas não autorizadas a sistemas de informações ou banco de dados da Administração Pública; II – se utiliza, indevidamente, do acesso restrito.","§2º Se da ação ou omissão resulta dano à Administração Pública ou a outrem: reclusão, de 2 a 6 anos, e multa."],d:"Revelou segredo do cargo ou emprestou a senha do sistema. Com dano, vira reclusão de 2 a 6."},
+ {id:"325-2",p:"325",al:"Art. 325, §2º",n:"Violação de sigilo funcional qualificada",t:"Se da ação ou omissão resulta dano à Administração Pública ou a outrem.",pena:"Reclusão, de 2 a 6 anos, e multa",r:"R",o:[],d:"O dano transforma detenção em reclusão: 2 a 6 anos."},
+ {id:"326",n:"Violação do sigilo de proposta de concorrência",t:"Devassar o sigilo de proposta de concorrência pública, ou proporcionar a terceiro o ensejo de devassá-lo.",pena:"Detenção, de 3 meses a 1 ano, e multa",r:"D",noq:1,o:["Atenção: a doutrina majoritária considera este artigo tacitamente revogado pela legislação de licitações (hoje, art. 337-J do CP, incluído pela Lei 14.133/2021). Confira como o seu edital o trata."],d:"Artigo de baixa incidência: o tema hoje está nos crimes em licitações (art. 337-J)."},
+ // VARA 7
+ {id:"328",n:"Usurpação de função pública",t:"Usurpar o exercício de função pública.",pena:"Detenção, de 3 meses a 2 anos, e multa",r:"D",o:["Parágrafo único: se do fato o agente aufere vantagem: reclusão, de 2 a 5 anos, e multa."],d:"Particular que ASSUME a função (age como se fosse o oficial). Com vantagem: reclusão de 2 a 5."},
+ {id:"328-1",p:"328",al:"Art. 328, parágrafo único",n:"Usurpação de função pública com vantagem",t:"Se do fato (usurpar o exercício de função pública) o agente aufere vantagem.",pena:"Reclusão, de 2 a 5 anos, e multa",r:"R",o:[],d:"Vantagem auferida = reclusão, 2 a 5."},
+ {id:"329",n:"Resistência",t:"Opor-se à execução de ato legal, mediante violência ou ameaça a funcionário competente para executá-lo ou a quem lhe esteja prestando auxílio.",pena:"Detenção, de 2 meses a 2 anos",r:"D",o:["§1º Se o ato, em razão da resistência, não se executa: reclusão, de 1 a 3 anos.","§2º As penas deste artigo são aplicáveis sem prejuízo das correspondentes à violência."],d:"Resistência = violência ou ameaça contra ato LEGAL. Se o ato não se executa: reclusão de 1 a 3."},
+ {id:"329-1",p:"329",al:"Art. 329, §1º",n:"Resistência qualificada",t:"Se o ato, em razão da resistência, não se executa.",pena:"Reclusão, de 1 a 3 anos",r:"R",o:[],d:"Deu certo resistir? Pior para o agente: reclusão de 1 a 3."},
+ {id:"330",n:"Desobediência",t:"Desobedecer a ordem legal de funcionário público.",pena:"Detenção, de 15 dias a 6 meses, e multa",r:"D",o:[],d:"Só não obedece, sem violência. Se usar violência ou ameaça para impedir o ato, é resistência."},
+ {id:"331",n:"Desacato",t:"Desacatar funcionário público no exercício da função ou em razão dela.",pena:"Detenção, de 6 meses a 2 anos, ou multa",r:"D",o:["O STJ (3ª Seção) e o STF reconhecem a validade do tipo de desacato."],d:"Desacato = humilhar, ofender, menosprezar o funcionário no exercício da função ou em razão dela."},
+ {id:"332",n:"Tráfico de influência",t:"Solicitar, exigir, cobrar ou obter, para si ou para outrem, vantagem ou promessa de vantagem, a pretexto de influir em ato praticado por funcionário público no exercício da função.",pena:"Reclusão, de 2 a 5 anos, e multa",r:"R",o:["Parágrafo único: a pena é aumentada da METADE se o agente alega ou insinua que a vantagem é também destinada ao funcionário."],d:"“Vendedor de fumaça” sobre funcionário público em geral: aumento da METADE. Se for juiz, MP, testemunha etc., é exploração de prestígio (art. 357, aumento de 1/3)."},
+ {id:"333",n:"Corrupção ativa",t:"Oferecer ou prometer vantagem indevida a funcionário público, para determiná-lo a praticar, omitir ou retardar ato de ofício.",pena:"Reclusão, de 2 a 12 anos, e multa",r:"R",o:["Parágrafo único: a pena é aumentada de 1/3 se, em razão da vantagem ou promessa, o funcionário retarda ou omite ato de ofício, ou o pratica infringindo dever funcional.","Crime formal: consuma-se com a oferta ou promessa, mesmo que recusada."],d:"Corrupção ativa = OFERECER ou PROMETER. Quem só paga depois que o funcionário pediu não pratica 333."},
+ {id:"336",n:"Inutilização de edital ou de sinal",t:"Rasgar ou, de qualquer forma, inutilizar ou conspurcar edital afixado por ordem de funcionário público; violar ou inutilizar selo ou sinal empregado, por determinação legal ou por ordem de funcionário público, para identificar ou cerrar qualquer objeto.",pena:"Detenção, de 1 mês a 1 ano, ou multa",r:"D",o:[],d:"Rasgou edital afixado ou rompeu lacre oficial. Conspurcar = sujar."},
+ {id:"337",n:"Subtração ou inutilização de livro ou documento",t:"Subtrair, ou inutilizar, total ou parcialmente, livro oficial, processo ou documento confiado à custódia de funcionário, em razão de ofício, ou de particular em serviço público.",pena:"Reclusão, de 2 a 5 anos",r:"R",o:["Subsidiário: se o fato não constitui crime mais grave.","Atenção: não há multa cominada."],d:"337 = alguém (normalmente particular) ataca documento que está sob custódia do funcionário. Se é o próprio guardião, é o 314."},
+ // VARA 8
+ {id:"339",n:"Denunciação caluniosa",t:"Dar causa à instauração de inquérito policial, de procedimento investigatório criminal, de processo judicial, de processo administrativo disciplinar, de inquérito civil ou de ação de improbidade administrativa contra alguém, imputando-lhe crime, infração ético-disciplinar ou ato ímprobo de que o sabe inocente.",pena:"Reclusão, de 2 a 8 anos, e multa",r:"R",o:["Redação dada pela Lei 14.110/2020.","§1º A pena é aumentada de sexta parte se o agente se serve de anonimato ou de nome suposto.","§2º A pena é diminuída de metade se a imputação é de prática de contravenção."],d:"Tem VÍTIMA determinada e gera procedimento. Anonimato/nome suposto: +1/6. Contravenção: metade."},
+ {id:"340",n:"Comunicação falsa de crime ou de contravenção",t:"Provocar a ação de autoridade, comunicando-lhe a ocorrência de crime ou de contravenção que sabe não se ter verificado.",pena:"Detenção, de 1 a 6 meses, ou multa",r:"D",o:[],d:"Crime fantasma, SEM apontar culpado. Se apontar pessoa determinada e gerar procedimento, é denunciação caluniosa."},
+ {id:"341",n:"Autoacusação falsa",t:"Acusar-se, perante a autoridade, de crime inexistente ou praticado por outrem.",pena:"Detenção, de 3 meses a 2 anos, ou multa",r:"D",o:[],d:"“Fui eu!” — mas não foi (ou o crime nem existiu)."},
+ {id:"342",n:"Falso testemunho ou falsa perícia",t:"Fazer afirmação falsa, ou negar ou calar a verdade como testemunha, perito, contador, tradutor ou intérprete em processo judicial, ou administrativo, inquérito policial, ou em juízo arbitral.",pena:"Reclusão, de 2 a 4 anos, e multa",r:"R",o:["§1º As penas aumentam-se de 1/6 a 1/3 se o crime é praticado mediante suborno ou se cometido com o fim de obter prova destinada a produzir efeito em processo penal, ou em processo civil em que for parte entidade da administração pública direta ou indireta.","§2º O fato deixa de ser punível se, antes da sentença no processo em que ocorreu o ilícito, o agente se retrata ou declara a verdade."],d:"Mentir, negar ou calar a verdade. Retratou-se ANTES DA SENTENÇA = deixa de ser punível."},
+ {id:"343",n:"Corrupção ativa de testemunha ou perito",t:"Dar, oferecer ou prometer dinheiro ou qualquer outra vantagem a testemunha, perito, contador, tradutor ou intérprete, para fazer afirmação falsa, negar ou calar a verdade em depoimento, perícia, cálculos, tradução ou interpretação.",pena:"Reclusão, de 3 a 4 anos, e multa",r:"R",o:["Parágrafo único: as penas aumentam-se de 1/6 a 1/3 se o crime é cometido com o fim de obter prova destinada a produzir efeito em processo penal ou em processo civil em que for parte entidade da administração pública direta ou indireta."],d:"Aqui o verbo DAR existe (diferente do 333). Pena curiosa: 3 a 4 anos, maior que a do próprio falso testemunho."},
+ {id:"344",n:"Coação no curso do processo",t:"Usar de violência ou grave ameaça, com o fim de favorecer interesse próprio ou alheio, contra autoridade, parte, ou qualquer outra pessoa que funciona ou é chamada a intervir em processo judicial, policial ou administrativo, ou em juízo arbitral.",pena:"Reclusão, de 1 a 4 anos, e multa, além da pena correspondente à violência",r:"R",o:["Parágrafo único: a pena aumenta-se de 1/3 até a metade se o processo envolver crime contra a dignidade sexual (Lei 14.245/2021)."],d:"Ameaçar testemunha, vítima, juiz ou parte para influenciar o processo. Crime contra a dignidade sexual: +1/3 até metade."},
+ // VARA 9
+ {id:"345",n:"Exercício arbitrário das próprias razões",t:"Fazer justiça pelas próprias mãos, para satisfazer pretensão, embora legítima, salvo quando a lei o permite.",pena:"Detenção, de 15 dias a 1 mês, ou multa, além da pena correspondente à violência",r:"D",o:["Parágrafo único: se não há emprego de violência, somente se procede mediante queixa."],d:"A pretensão pode ser LEGÍTIMA (cobrar dívida real). Sem violência = ação privada (queixa)."},
+ {id:"346",n:"Subtração ou dano de coisa própria em poder de terceiro",t:"Tirar, suprimir, destruir ou danificar coisa própria, que se acha em poder de terceiro por determinação judicial ou convenção.",pena:"Detenção, de 6 meses a 2 anos, e multa",r:"D",o:[],d:"A coisa é DO PRÓPRIO agente, mas está com terceiro por ordem judicial ou contrato (ex.: bem penhorado com depositário)."},
+ {id:"347",n:"Fraude processual",t:"Inovar artificiosamente, na pendência de processo civil ou administrativo, o estado de lugar, de coisa ou de pessoa, com o fim de induzir a erro o juiz ou o perito.",pena:"Detenção, de 3 meses a 2 anos, e multa",r:"D",o:["Parágrafo único: se a inovação se destina a produzir efeito em processo penal, ainda que não iniciado, as penas aplicam-se em DOBRO."],d:"Mexer na cena para enganar juiz ou perito. Processo penal, mesmo não iniciado: pena em dobro."},
+ {id:"357",n:"Exploração de prestígio",t:"Solicitar ou receber dinheiro ou qualquer outra utilidade, a pretexto de influir em juiz, jurado, órgão do Ministério Público, funcionário de justiça, perito, tradutor, intérprete ou testemunha.",pena:"Reclusão, de 1 a 5 anos, e multa",r:"R",o:["Parágrafo único: as penas aumentam-se de 1/3 se o agente alega ou insinua que o dinheiro ou utilidade também se destina a qualquer das pessoas referidas."],d:"Tráfico de influência “da Justiça”: juiz, jurado, MP, funcionário de justiça, perito, tradutor, intérprete, testemunha. Aumento de 1/3."},
+ {id:"359",n:"Desobediência a decisão judicial sobre perda ou suspensão de direito",t:"Exercer função, atividade, direito, autoridade ou múnus, de que foi suspenso ou privado por decisão judicial.",pena:"Detenção, de 3 meses a 2 anos, ou multa",r:"D",o:[],d:"O juiz suspendeu ou privou do direito e a pessoa continua exercendo."}
+];
+
+/* Casos no balcão: a = resposta, op = alternativas (ids), e = explicação */
+const CASOS=[
+ {a:"316",op:["316","317","333","332"],t:"Fiscal municipal avisa o dono de um restaurante: “ou você me paga R$ 2.000, ou eu fecho seu estabelecimento amanhã”. O comerciante não paga.",e:"O fiscal EXIGIU a vantagem, em razão da função. Concussão é crime formal: consuma-se com a exigência, mesmo sem pagamento."},
+ {a:"317",op:["317","316","321","332"],t:"Servidor do cartório judicial insinua ao advogado que “um agrado” de R$ 500 faria o processo andar mais rápido.",e:"Ele SOLICITOU (pediu, sem impor) vantagem indevida em razão da função: corrupção passiva."},
+ {a:"333",op:["333","317","332","330"],t:"Parado numa blitz, o motorista oferece R$ 200 ao policial para não ser autuado. O policial recusa e dá voz de prisão.",e:"OFERECER vantagem indevida para o funcionário omitir ato de ofício é corrupção ativa, consumada com a simples oferta, ainda que recusada."},
+ {a:"312",op:["312","313","314","337"],t:"Escrevente leva para casa, definitivamente, o notebook do fórum que estava sob sua responsabilidade em razão do cargo.",e:"Apropriou-se de bem de que tinha a posse em razão do cargo: peculato-apropriação (art. 312, caput)."},
+ {a:"312-1",op:["312-1","313","337","312-2"],t:"Servidor que não tem a guarda do almoxarifado usa o crachá funcional, que lhe dá acesso ao prédio, para subtrair caixas de papel e tonners.",e:"Sem a posse do bem, ele subtraiu valendo-se da facilidade proporcionada pela qualidade de funcionário: peculato-furto (§1º)."},
+ {a:"312-2",op:["312-2","312","319","323"],t:"Por descuido, servidora deixa aberta a sala do almoxarifado ao sair. Durante a noite, um terceiro entra e furta computadores.",e:"Ela concorreu culposamente para o crime de outrem: peculato culposo. Se reparar o dano antes da sentença irrecorrível, extingue-se a punibilidade."},
+ {a:"313",op:["313","312","316","317"],t:"Contribuinte, por engano, paga duas vezes a mesma taxa no guichê. O servidor percebe o erro e embolsa o valor pago a mais.",e:"Apropriou-se de dinheiro que recebeu, no exercício do cargo, por erro de outrem: peculato mediante erro de outrem (peculato-estelionato)."},
+ {a:"313-A",op:["313-A","313-B","299","325"],t:"Funcionária autorizada a operar o sistema da Previdência insere vínculos de emprego inexistentes para que um amigo obtenha aposentadoria.",e:"Funcionário autorizado inserindo dados falsos no sistema para obter vantagem indevida: art. 313-A (reclusão de 2 a 12)."},
+ {a:"313-B",op:["313-B","313-A","325","297"],t:"Servidor do setor de TI, sem autorização da chefia, altera o código do programa do órgão que calcula as diárias.",e:"Modificar programa de informática sem autorização ou solicitação da autoridade competente: art. 313-B (detenção)."},
+ {a:"314",op:["314","337","305","336"],t:"Irritada com um advogado, a escrevente responsável pela guarda dos autos inutiliza documentos que estavam sob sua guarda em razão do cargo.",e:"Funcionária que inutiliza documento de que TEM A GUARDA em razão do cargo: art. 314."},
+ {a:"337",op:["337","314","305","346"],t:"Ao consultar um processo no balcão, a parte arranca e leva consigo folhas dos autos que estavam sob a custódia do escrevente.",e:"Subtrair documento ou processo confiado à custódia de funcionário: art. 337 (crime praticado normalmente por particular)."},
+ {a:"315",op:["315","312","319","321"],t:"Secretário estadual usa verba que a lei vinculava à compra de medicamentos para reformar a sede da secretaria. Não há proveito pessoal.",e:"Deu às verbas públicas aplicação diversa da estabelecida em lei, sem proveito próprio: art. 315."},
+ {a:"319",op:["319","320","317","317-2"],t:"Escrevente deixa de juntar a petição aos autos por semanas porque o advogado é seu desafeto.",e:"Retardou ato de ofício para satisfazer sentimento pessoal (desafeto): prevaricação."},
+ {a:"317-2",op:["317-2","319","320","321"],t:"Agente de trânsito, sem receber nada, deixa de lavrar uma multa porque um vereador influente pediu que “desse um jeito”.",e:"Deixou de praticar ato de ofício, com infração de dever, CEDENDO A PEDIDO OU INFLUÊNCIA de outrem: corrupção passiva privilegiada (§2º do art. 317)."},
+ {a:"320",op:["320","319","317-2","321"],t:"Chefe de seção descobre que um subordinado cometeu infração no exercício do cargo e, por pena dele, decide não responsabilizá-lo.",e:"Por indulgência, deixou de responsabilizar subordinado: condescendência criminosa."},
+ {a:"319-A",op:["319-A","319","320","317"],t:"Diretor de penitenciária, ciente de que presos usam celulares nas celas, nada faz para impedir o acesso aos aparelhos.",e:"Deixar de cumprir o dever de vedar ao preso acesso a aparelho telefônico: art. 319-A."},
+ {a:"321",op:["321","332","317","319"],t:"Servidor do órgão previdenciário usa sua condição para ir à mesa dos colegas e acompanhar, pessoalmente, o pedido legítimo de benefício de um vizinho.",e:"Patrocinou interesse privado perante a administração valendo-se da qualidade de funcionário: advocacia administrativa (mesmo sendo legítimo o interesse)."},
+ {a:"322",op:["322","329","331","316"],t:"Durante uma diligência, o funcionário, a pretexto de cumprir a ordem, agride fisicamente o morador sem qualquer necessidade.",e:"Praticar violência no exercício da função ou a pretexto de exercê-la: violência arbitrária, somada à pena da violência."},
+ {a:"323",op:["323","324","319","320"],t:"Servidor simplesmente para de comparecer ao trabalho e abandona o cargo, fora dos casos permitidos em lei.",e:"Abandonar cargo público fora dos casos permitidos em lei: abandono de função."},
+ {a:"324",op:["324","328","323","307"],t:"Servidor oficialmente notificado de sua exoneração continua despachando documentos no setor, sem autorização.",e:"Continuar exercendo a função depois de saber oficialmente da exoneração: exercício funcional ilegalmente prolongado."},
+ {a:"325",op:["325","311-A","321","319"],t:"Escrevente conta a um jornalista detalhes de processo que tramita em segredo de justiça, dos quais soube em razão do cargo.",e:"Revelar fato de que tem ciência em razão do cargo e que deva permanecer em segredo: violação de sigilo funcional."},
+ {a:"325",op:["325","313-B","313-A","311-A"],t:"Servidor empresta sua senha do sistema do tribunal a um amigo, que não tem autorização, para que ele consulte dados restritos.",e:"Permitir, mediante empréstimo de senha, o acesso de pessoa não autorizada a sistema da Administração: art. 325, §1º, I."},
+ {a:"311-A",op:["311-A","325","317","299"],t:"Funcionário da gráfica contratada para imprimir as provas de um concurso público vende o conteúdo do caderno antes da aplicação.",e:"Divulgar indevidamente conteúdo sigiloso de concurso público: fraude em certame de interesse público."},
+ {a:"311-A",op:["311-A","325","319","320"],t:"Servidor deixa a sala com as provas do vestibular de uma universidade pública aberta, de propósito, para que o sobrinho veja as questões.",e:"Permitir ou facilitar o acesso de pessoa não autorizada a conteúdo sigiloso de processo seletivo para o ensino superior: art. 311-A, §1º."},
+ {a:"328",op:["328","307","324","332"],t:"Particular se apresenta como oficial de justiça e realiza uma falsa “penhora” na casa de um devedor, sem obter nenhuma vantagem.",e:"Usurpar o exercício de função pública. Sem vantagem: forma simples (detenção)."},
+ {a:"328-1",op:["328-1","328","332","316"],t:"Particular finge ser fiscal sanitário, “interdita” uma padaria e recebe dinheiro para “liberar” o local.",e:"Usurpação de função pública com obtenção de vantagem: parágrafo único do art. 328 (reclusão de 2 a 5)."},
+ {a:"307",op:["307","308","299","304"],t:"Abordado pela polícia, o sujeito diz o nome do irmão para esconder seus antecedentes criminais.",e:"Atribuiu-se falsa identidade para obter vantagem. Súmula 522 do STJ: é típica mesmo em alegada autodefesa."},
+ {a:"308",op:["308","307","304","297"],t:"Jovem usa como se fosse seu o RG verdadeiro do primo mais velho para entrar em uma casa noturna.",e:"Usar, como próprio, documento de identidade alheia (verdadeiro): art. 308."},
+ {a:"304",op:["304","297","307","308"],t:"Motorista apresenta ao policial uma CNH que sabe ter sido falsificada.",e:"Fazer uso de documento falsificado: art. 304, com a pena da falsificação correspondente."},
+ {a:"297",op:["297","299","298","304"],t:"Sujeito raspa e reescreve a data de nascimento no próprio RG para parecer maior de idade.",e:"Alterou documento público verdadeiro (falsidade material): art. 297."},
+ {a:"299",op:["299","297","304","307"],t:"Na escritura pública, o vendedor declara ao tabelião que é solteiro, sabendo ser casado, para vender o imóvel sem a outorga do cônjuge.",e:"O documento é verdadeiro, mas foi inserida declaração falsa sobre fato juridicamente relevante: falsidade ideológica."},
+ {a:"298",op:["298","297","299","300"],t:"Empregado imita a assinatura do patrão em um contrato particular de locação.",e:"Falsificação material de documento particular: art. 298."},
+ {a:"298",op:["298","297","293","294"],t:"Quadrilha clona cartões de débito de clientes de um banco.",e:"Cartão de crédito ou débito é EQUIPARADO a documento particular (art. 298, parágrafo único)."},
+ {a:"297",op:["297","298","299","305"],t:"Sobrinho falsifica o testamento particular do tio para ser incluído como herdeiro.",e:"Testamento particular é equiparado a documento público (art. 297, §2º)."},
+ {a:"300",op:["300","299","301","297"],t:"Tabelião, no exercício da função, reconhece como verdadeira uma assinatura que sabe ser falsa.",e:"Reconhecer como verdadeira firma que não o seja, no exercício de função pública: art. 300."},
+ {a:"301",op:["301","302","299","300"],t:"Servidor de escola pública emite certidão atestando falsamente que um aluno concluiu curso técnico, para que ele seja contratado em cargo público.",e:"Atestar falsamente, em razão de função pública, fato que habilite alguém a obter cargo público: art. 301."},
+ {a:"301-1",op:["301-1","301","298","302"],t:"Particular altera, com caneta, o teor de uma certidão verdadeira de quitação eleitoral para se inscrever em concurso público.",e:"Alterar o teor de certidão verdadeira para obter vantagem: falsidade material de atestado ou certidão (art. 301, §1º)."},
+ {a:"302",op:["302","301","299","298"],t:"Médico, no exercício da profissão, emite atestado dizendo que o paciente esteve internado, o que não aconteceu.",e:"Dar o médico atestado falso no exercício da profissão: art. 302."},
+ {a:"305",op:["305","314","337","297"],t:"Herdeiro rasga e queima o testamento verdadeiro do pai, que o prejudicava.",e:"Destruir documento verdadeiro de que não podia dispor, em benefício próprio: supressão de documento."},
+ {a:"294",op:["294","293","296","303"],t:"Polícia encontra na casa do suspeito uma máquina especialmente destinada a falsificar selos de controle tributário.",e:"Possuir ou guardar objeto especialmente destinado à falsificação de papéis públicos: petrechos de falsificação."},
+ {a:"293",op:["293","297","296","298"],t:"Empresário falsifica guias de recolhimento de tributos para simular pagamentos.",e:"Guia relativa a arrecadação de rendas públicas é papel público: art. 293."},
+ {a:"296",op:["296","300","297","293"],t:"Falsário fabrica um carimbo idêntico ao sinal público de um tabelião.",e:"Falsificar sinal público de tabelião: art. 296."},
+ {a:"303",op:["303","296","293","298"],t:"Colecionador altera um selo filatélico raro para aumentar seu valor, sem nenhuma anotação na face ou no verso.",e:"Alterar selo filatélico com valor para coleção, sem a anotação visível: art. 303."},
+ {a:"329-1",op:["329-1","329","330","331"],t:"Ao receber voz de prisão legal, o sujeito empurra e agride o policial e consegue fugir: a prisão não acontece.",e:"Resistência com violência, e o ato não se executou: forma qualificada (§1º), reclusão de 1 a 3, sem prejuízo da pena da violência."},
+ {a:"329",op:["329","330","331","344"],t:"Durante a penhora determinada pelo juiz, o devedor ameaça o oficial de justiça, mas a penhora é concluída mesmo assim.",e:"Opor-se a ato legal mediante ameaça ao funcionário competente: resistência simples (o ato foi executado)."},
+ {a:"330",op:["330","329","331","328"],t:"Condutor ignora a ordem legal de parada do agente e segue viagem, sem qualquer violência ou ameaça.",e:"Desobedecer a ordem legal de funcionário público, sem violência: desobediência."},
+ {a:"331",op:["331","330","329","322"],t:"Inconformado com a demora, o cidadão xinga e humilha o escrevente no balcão, por causa do trabalho dele.",e:"Ofender o funcionário no exercício da função ou em razão dela: desacato."},
+ {a:"332",op:["332","357","333","321"],t:"Sujeito cobra R$ 10 mil de um empresário a pretexto de influir no servidor da prefeitura que analisa um alvará.",e:"Cobrar vantagem a pretexto de influir em ato de funcionário público: tráfico de influência."},
+ {a:"357",op:["357","332","343","344"],t:"Homem recebe dinheiro do réu prometendo “conversar com o juiz” para conseguir a absolvição.",e:"Receber dinheiro a pretexto de influir em JUIZ: exploração de prestígio (art. 357)."},
+ {a:"336",op:["336","337","331","305"],t:"Comerciante rasga o edital afixado no mural do fórum por ordem do juiz.",e:"Rasgar edital afixado por ordem de funcionário público: art. 336."},
+ {a:"336",op:["336","330","346","337"],t:"Dono do bar interditado rompe o lacre colocado pela fiscalização para voltar a funcionar.",e:"Violar selo ou sinal empregado por ordem de funcionário para cerrar objeto: art. 336."},
+ {a:"339",op:["339","340","341","342"],t:"Sabendo que o vizinho é inocente, a mulher o acusa de furto e dá causa à instauração de inquérito policial contra ele.",e:"Deu causa a inquérito contra pessoa determinada, imputando crime de que a sabe inocente: denunciação caluniosa."},
+ {a:"340",op:["340","339","341","347"],t:"Para enganar a seguradora, o dono do carro registra na delegacia um roubo que nunca aconteceu, sem apontar qualquer autor.",e:"Comunicar à autoridade crime que sabe não ter ocorrido, sem imputar a alguém: comunicação falsa de crime."},
+ {a:"341",op:["341","340","342","339"],t:"Para proteger o filho, o pai vai à delegacia e confessa ter sido o autor do crime que, na verdade, o filho cometeu.",e:"Acusar-se perante a autoridade de crime praticado por outrem: autoacusação falsa."},
+ {a:"342",op:["342","343","341","344"],t:"Testemunha mente em audiência para proteger o réu, que é seu amigo.",e:"Fazer afirmação falsa como testemunha em processo judicial: falso testemunho."},
+ {a:"342",op:["342","347","299","343"],t:"Perito judicial afirma no laudo, conscientemente, algo que sabe ser falso.",e:"Falsa perícia: o perito também está no art. 342."},
+ {a:"343",op:["343","333","342","344"],t:"Réu oferece dinheiro a uma testemunha para que ela minta em juízo.",e:"Oferecer vantagem a testemunha para fazer afirmação falsa: art. 343 (não é o 333, que é para funcionário público)."},
+ {a:"344",op:["344","343","331","345"],t:"Réu ameaça de morte a vítima para que ela não deponha contra ele no processo criminal.",e:"Grave ameaça contra pessoa chamada a intervir em processo, para favorecer interesse próprio: coação no curso do processo."},
+ {a:"345",op:["345","346","347","344"],t:"Credor cansado de esperar entra na casa do devedor e leva a televisão para quitar a dívida (que realmente existe).",e:"Fazer justiça pelas próprias mãos para satisfazer pretensão, embora legítima: exercício arbitrário das próprias razões."},
+ {a:"346",op:["346","345","305","337"],t:"Devedor retira do depósito o próprio carro, que estava penhorado e entregue a depositário por ordem judicial.",e:"Tirar coisa própria que está em poder de terceiro por determinação judicial: art. 346."},
+ {a:"347",op:["347","341","305","344"],t:"Depois de um homicídio, o autor limpa o sangue e muda o corpo de lugar antes da perícia, para induzir o perito em erro.",e:"Inovar artificiosamente o estado de lugar e de pessoa para enganar o perito: fraude processual. Como é para processo penal, ainda que não iniciado, a pena é em dobro."},
+ {a:"359",op:["359","324","328","330"],t:"Por decisão judicial, um tutor foi destituído da tutela, mas continua administrando os bens do tutelado.",e:"Exercer múnus de que foi privado por decisão judicial: art. 359."},
+ {a:"316-1",op:["316-1","316","315","317"],t:"Fiscal de tributos cobra do contribuinte um imposto que sabe ser indevido.",e:"Exigir tributo que sabe ou deveria saber indevido: excesso de exação (art. 316, §1º)."},
+ {a:"316-1",op:["316-1","331","316","322"],t:"Fiscal cobra tributo devido expondo o contribuinte publicamente, com meio vexatório não autorizado em lei.",e:"Quando devido, empregar na cobrança meio vexatório ou gravoso não autorizado em lei: excesso de exação."},
+ {a:"316-2",op:["316-2","312","313","316-1"],t:"Funcionário recebe indevidamente valores para recolher aos cofres públicos e os desvia em proveito próprio.",e:"Desviar o que recebeu indevidamente para recolher aos cofres públicos: art. 316, §2º (reclusão de 2 a 12)."}
+];
+
+/* Certo ou errado */
+const VF=[
+ {s:"A concussão se consuma com a mera exigência da vantagem indevida, ainda que ela não seja entregue.",v:1,a:"316",e:"Crime formal: basta a exigência."},
+ {s:"A pena da concussão é de reclusão, de 2 a 8 anos, e multa.",v:0,a:"316",e:"Desde o Pacote Anticrime (Lei 13.964/2019) é de 2 a 12 anos, e multa."},
+ {s:"São núcleos da corrupção passiva: solicitar, receber ou aceitar promessa de vantagem indevida.",v:1,a:"317",e:"Exatamente: Solicitar, Receber, Aceitar promessa."},
+ {s:"São núcleos da corrupção ativa: oferecer, prometer ou dar vantagem indevida a funcionário público.",v:0,a:"333",e:"Só OFERECER ou PROMETER. “Dar” aparece no art. 343 (testemunha), não no 333."},
+ {s:"Na corrupção passiva, a pena é aumentada de 1/3 se, em consequência da vantagem, o funcionário retarda ou deixa de praticar ato de ofício ou o pratica infringindo dever funcional.",v:1,a:"317",e:"Art. 317, §1º."},
+ {s:"No peculato culposo, a reparação do dano, se precede à sentença irrecorrível, extingue a punibilidade.",v:1,a:"312-2",e:"Art. 312, §3º, primeira parte."},
+ {s:"No peculato culposo, a reparação do dano posterior à sentença irrecorrível também extingue a punibilidade.",v:0,a:"312-2",e:"Depois da sentença irrecorrível, a reparação reduz de METADE a pena imposta."},
+ {s:"A reparação do dano antes da sentença extingue a punibilidade também no peculato doloso.",v:0,a:"312",e:"O benefício do §3º é exclusivo do peculato CULPOSO."},
+ {s:"Considera-se funcionário público, para efeitos penais, quem exerce cargo, emprego ou função pública, ainda que transitoriamente ou sem remuneração.",v:1,a:"327",e:"Art. 327, caput."},
+ {s:"Equipara-se a funcionário público quem trabalha para empresa prestadora de serviço contratada ou conveniada para a execução de atividade típica da Administração Pública.",v:1,a:"327",e:"Art. 327, §1º."},
+ {s:"A pena é aumentada da metade quando os autores dos crimes funcionais forem ocupantes de cargos em comissão.",v:0,a:"327",e:"O aumento do art. 327, §2º é da TERÇA PARTE."},
+ {s:"Para haver prevaricação, o funcionário deve agir para satisfazer interesse ou sentimento pessoal.",v:1,a:"319",e:"É o elemento subjetivo especial do art. 319."},
+ {s:"Comete condescendência criminosa o funcionário que, por indulgência, deixa de responsabilizar subordinado que cometeu infração no exercício do cargo.",v:1,a:"320",e:"Art. 320."},
+ {s:"A advocacia administrativa só se configura quando o interesse privado patrocinado é ilegítimo.",v:0,a:"321",e:"Interesse legítimo já configura o caput; se ilegítimo, a pena aumenta (parágrafo único)."},
+ {s:"O abandono de função tem pena maior se do fato resulta prejuízo público, e maior ainda se ocorre em lugar compreendido na faixa de fronteira.",v:1,a:"323",e:"§1º: 3 meses a 1 ano e multa; §2º: 1 a 3 anos e multa."},
+ {s:"A violação de sigilo funcional da qual resulta dano à Administração Pública ou a outrem é punida com reclusão, de 2 a 6 anos, e multa.",v:1,a:"325-2",e:"Art. 325, §2º."},
+ {s:"Comete violação de sigilo funcional quem empresta sua senha para que pessoa não autorizada acesse sistema da Administração Pública.",v:1,a:"325",e:"Art. 325, §1º, I."},
+ {s:"Na resistência, se o ato, em razão dela, não se executa, a pena é de reclusão, de 1 a 3 anos.",v:1,a:"329-1",e:"Art. 329, §1º."},
+ {s:"Configura resistência a oposição, mediante violência, à execução de ato ilegal.",v:0,a:"329",e:"A resistência exige oposição a ato LEGAL."},
+ {s:"A desobediência é punida com detenção, de 15 dias a 6 meses, e multa.",v:1,a:"330",e:"Art. 330."},
+ {s:"O desacato é punido com detenção, de 6 meses a 2 anos, ou multa.",v:1,a:"331",e:"Art. 331."},
+ {s:"No tráfico de influência, a pena é aumentada da metade se o agente alega ou insinua que a vantagem é também destinada ao funcionário.",v:1,a:"332",e:"Art. 332, parágrafo único."},
+ {s:"Na exploração de prestígio, a pena é aumentada da metade se o agente insinua que o dinheiro também se destina ao juiz.",v:0,a:"357",e:"No art. 357 o aumento é de 1/3. Metade é no tráfico de influência."},
+ {s:"Na corrupção ativa, a pena é aumentada de 1/3 se, em razão da vantagem ou promessa, o funcionário retarda ou omite ato de ofício.",v:1,a:"333",e:"Art. 333, parágrafo único."},
+ {s:"A usurpação de função pública com obtenção de vantagem é punida com reclusão, de 2 a 5 anos, e multa.",v:1,a:"328-1",e:"Art. 328, parágrafo único."},
+ {s:"A falsa identidade só é punida se o fato não constitui elemento de crime mais grave.",v:1,a:"307",e:"É crime expressamente subsidiário."},
+ {s:"Segundo o STJ, é atípica a conduta de atribuir-se falsa identidade perante a autoridade policial em situação de autodefesa.",v:0,a:"307",e:"Súmula 522 do STJ: a conduta é TÍPICA, ainda que em alegada autodefesa."},
+ {s:"Equiparam-se a documento público o título ao portador ou transmissível por endosso, as ações de sociedade comercial, os livros mercantis e o testamento particular.",v:1,a:"297",e:"Art. 297, §2º (além do documento emanado de entidade paraestatal)."},
+ {s:"O cartão de crédito ou débito equipara-se a documento público.",v:0,a:"298",e:"Equipara-se a documento PARTICULAR (art. 298, parágrafo único)."},
+ {s:"A falsidade ideológica em documento particular é punida com reclusão, de 1 a 3 anos, e multa.",v:1,a:"299",e:"Público: 1 a 5; particular: 1 a 3."},
+ {s:"A falsidade ideológica em documento público é punida com reclusão, de 2 a 6 anos, e multa.",v:0,a:"299",e:"É de 1 a 5 anos. 2 a 6 é a falsificação (material) de documento público."},
+ {s:"Na falsidade ideológica, o documento é materialmente verdadeiro, mas o seu conteúdo é falso.",v:1,a:"299",e:"Essa é a diferença para a falsidade material (arts. 297 e 298)."},
+ {s:"O uso de documento falso tem pena própria de detenção, de 1 a 3 anos.",v:0,a:"304",e:"A pena é a cominada à falsificação ou à alteração."},
+ {s:"A falsidade de atestado médico é crime próprio do médico, no exercício da profissão.",v:1,a:"302",e:"Art. 302: “Dar o médico...”."},
+ {s:"Se o atestado médico falso é dado com o fim de lucro, aplica-se também multa.",v:1,a:"302",e:"Art. 302, parágrafo único."},
+ {s:"A supressão de documento consiste em destruir, suprimir ou ocultar documento verdadeiro de que o agente não podia dispor.",v:1,a:"305",e:"Art. 305."},
+ {s:"A supressão de documento público é punida com reclusão, de 2 a 6 anos, e multa.",v:1,a:"305",e:"Se particular: reclusão de 1 a 5, e multa."},
+ {s:"Na falsificação de documento público, o funcionário que se prevalece do cargo tem a pena aumentada de 1/3.",v:0,a:"297",e:"O aumento é de SEXTA parte (art. 297, §1º)."},
+ {s:"Não há crime na reprodução de selo filatélico quando ela está visivelmente anotada na face ou no verso do selo.",v:1,a:"303",e:"É a ressalva do próprio art. 303."},
+ {s:"Comete o crime de petrechos de falsificação quem possui ou guarda objeto especialmente destinado à falsificação de papéis públicos.",v:1,a:"294",e:"Art. 294."},
+ {s:"Nas fraudes em certames de interesse público, a pena é aumentada de 1/3 se o fato é cometido por funcionário público.",v:1,a:"311-A",e:"Art. 311-A, §3º."},
+ {s:"O crime de fraude em certames alcança apenas concursos públicos, não abrangendo vestibulares.",v:0,a:"311-A",e:"Inclui processo seletivo para ingresso no ensino superior, avaliações e exames públicos e exames previstos em lei."},
+ {s:"Se da fraude em certame de interesse público resulta dano à administração, a pena é de reclusão, de 2 a 6 anos, e multa.",v:1,a:"311-A",e:"Art. 311-A, §2º."},
+ {s:"A denunciação caluniosa abrange dar causa à instauração de processo administrativo disciplinar e de ação de improbidade administrativa.",v:1,a:"339",e:"Redação da Lei 14.110/2020."},
+ {s:"Na denunciação caluniosa, a pena é aumentada de sexta parte se o agente se serve de anonimato ou de nome suposto.",v:1,a:"339",e:"Art. 339, §1º."},
+ {s:"Na denunciação caluniosa, se a imputação é de contravenção, a pena é diminuída de 1/3.",v:0,a:"339",e:"É diminuída de METADE (art. 339, §2º)."},
+ {s:"A comunicação falsa de crime exige que o agente aponte pessoa determinada como autora.",v:0,a:"340",e:"Apontar pessoa determinada é característica da denunciação caluniosa (art. 339)."},
+ {s:"Comete autoacusação falsa quem se acusa, perante a autoridade, de crime inexistente ou praticado por outrem.",v:1,a:"341",e:"Art. 341."},
+ {s:"No falso testemunho, o fato deixa de ser punível se, antes da sentença no processo em que ocorreu o ilícito, o agente se retrata ou declara a verdade.",v:1,a:"342",e:"Art. 342, §2º."},
+ {s:"A retratação no falso testemunho pode ocorrer até o trânsito em julgado da sentença.",v:0,a:"342",e:"Deve ocorrer ANTES DA SENTENÇA no processo em que ocorreu o ilícito."},
+ {s:"O falso testemunho é punido com reclusão, de 2 a 4 anos, e multa.",v:1,a:"342",e:"Art. 342, caput."},
+ {s:"O falso testemunho pode ser praticado em juízo arbitral.",v:1,a:"342",e:"O art. 342 menciona expressamente o juízo arbitral."},
+ {s:"Dar, oferecer ou prometer dinheiro a testemunha para que minta é punido com reclusão, de 3 a 4 anos, e multa.",v:1,a:"343",e:"Art. 343."},
+ {s:"Na coação no curso do processo, a pena aumenta de 1/3 até a metade se o processo envolver crime contra a dignidade sexual.",v:1,a:"344",e:"Art. 344, parágrafo único (Lei 14.245/2021)."},
+ {s:"No exercício arbitrário das próprias razões, se não há emprego de violência, somente se procede mediante queixa.",v:1,a:"345",e:"Art. 345, parágrafo único."},
+ {s:"O exercício arbitrário das próprias razões pressupõe que a pretensão do agente seja ilegítima.",v:0,a:"345",e:"O tipo diz “embora legítima”."},
+ {s:"Na fraude processual, se a inovação se destina a produzir efeito em processo penal, ainda que não iniciado, as penas aplicam-se em dobro.",v:1,a:"347",e:"Art. 347, parágrafo único."},
+ {s:"A fraude processual voltada a processo penal exige que o processo já tenha sido iniciado.",v:0,a:"347",e:"“Ainda que não iniciado” — e com pena em dobro."},
+ {s:"O peculato mediante erro de outrem é punido com reclusão, de 1 a 4 anos, e multa.",v:1,a:"313",e:"Art. 313."},
+ {s:"A inserção de dados falsos em sistema de informações (art. 313-A) é crime do funcionário autorizado.",v:1,a:"313-A",e:"O tipo diz “o funcionário autorizado”."},
+ {s:"Na modificação não autorizada de sistema de informações, as penas aumentam de 1/3 até a metade se resulta dano para a Administração ou para o administrado.",v:1,a:"313-B",e:"Art. 313-B, parágrafo único."},
+ {s:"Comete emprego irregular de verbas públicas quem dá às verbas ou rendas públicas aplicação diversa da estabelecida em lei.",v:1,a:"315",e:"Art. 315."},
+ {s:"Na corrupção passiva privilegiada, o funcionário pratica, deixa de praticar ou retarda ato de ofício, com infração de dever funcional, cedendo a pedido ou influência de outrem.",v:1,a:"317-2",e:"Art. 317, §2º."},
+ {s:"No excesso de exação, o funcionário exige tributo que sabe ou deveria saber indevido, ou emprega meio vexatório ou gravoso na cobrança do tributo devido.",v:1,a:"316-1",e:"Art. 316, §1º."},
+ {s:"Segundo o STJ, aplica-se o princípio da insignificância aos crimes contra a administração pública quando o valor é pequeno.",v:0,a:"312",e:"Súmula 599 do STJ: o princípio da insignificância é INAPLICÁVEL aos crimes contra a administração pública."},
+ {s:"Comete exercício funcional ilegalmente antecipado quem entra no exercício de função pública antes de satisfeitas as exigências legais.",v:1,a:"324",e:"Art. 324, primeira parte."},
+ {s:"Exercer função de que foi suspenso por decisão judicial configura o crime do art. 359.",v:1,a:"359",e:"Desobediência a decisão judicial sobre perda ou suspensão de direito."},
+ {s:"A subtração ou inutilização de livro ou documento (art. 337) é punida com reclusão, de 2 a 5 anos, se o fato não constitui crime mais grave.",v:1,a:"337",e:"Art. 337 — repare: sem multa."},
+ {s:"Rasgar edital afixado por ordem de funcionário público é punido com reclusão, de 1 a 4 anos.",v:0,a:"336",e:"Art. 336: detenção, de 1 mês a 1 ano, ou multa."},
+ {s:"Deixar o diretor de penitenciária de vedar ao preso o acesso a aparelho telefônico é crime punido com detenção, de 3 meses a 1 ano.",v:1,a:"319-A",e:"Art. 319-A."},
+ {s:"A falsificação de papéis públicos é punida com reclusão, de 2 a 8 anos, e multa.",v:1,a:"293",e:"Art. 293, caput."},
+ {s:"A falsidade material de atestado ou certidão é punida com detenção, de 3 meses a 2 anos.",v:1,a:"301-1",e:"Art. 301, §1º."},
+ {s:"O peculato é punido com reclusão, de 2 a 12 anos, e multa.",v:1,a:"312",e:"Art. 312, caput."},
+ {s:"A violência arbitrária é punida com detenção, de 6 meses a 3 anos, além da pena correspondente à violência.",v:1,a:"322",e:"Art. 322."},
+ {s:"A falsa identidade (art. 307) é punida com detenção, de 3 meses a 1 ano, ou multa.",v:1,a:"307",e:"Art. 307."},
+ {s:"Usar, como próprio, documento de identidade alheia é punido com detenção, de 4 meses a 2 anos, e multa.",v:1,a:"308",e:"Art. 308."},
+ {s:"A concussão só existe se o funcionário já estiver no exercício da função.",v:0,a:"316",e:"O tipo diz “ainda que fora da função ou antes de assumi-la, mas em razão dela”."},
+ {s:"No peculato, o bem apropriado pode ser público ou particular, desde que o funcionário tenha a posse em razão do cargo.",v:1,a:"312",e:"“...bem móvel, público ou particular, de que tem a posse em razão do cargo”."},
+ {s:"O extravio de documento (art. 314) é punido com reclusão, de 1 a 4 anos, e multa.",v:0,a:"314",e:"Pena: reclusão, de 1 a 4 anos — SEM multa."},
+ {s:"No tráfico de influência, os verbos são solicitar, exigir, cobrar ou obter vantagem ou promessa de vantagem.",v:1,a:"332",e:"Art. 332."}
+];
+
+/* Lei seca: complete a lacuna. ___ marca o espaço */
+const LAC=[
+ {a:"316",t:"___, para si ou para outrem, direta ou indiretamente, ainda que fora da função ou antes de assumi-la, mas em razão dela, vantagem indevida.",ok:"Exigir",x:["Solicitar","Cobrar","Obter"]},
+ {a:"317",t:"___ ou receber, para si ou para outrem, direta ou indiretamente, ainda que fora da função ou antes de assumi-la, mas em razão dela, vantagem indevida, ou aceitar promessa de tal vantagem.",ok:"Solicitar",x:["Exigir","Oferecer","Cobrar"]},
+ {a:"333",t:"___ ou prometer vantagem indevida a funcionário público, para determiná-lo a praticar, omitir ou retardar ato de ofício.",ok:"Oferecer",x:["Dar","Solicitar","Entregar"]},
+ {a:"332",t:"Solicitar, exigir, cobrar ou ___, para si ou para outrem, vantagem ou promessa de vantagem, a pretexto de influir em ato praticado por funcionário público no exercício da função.",ok:"obter",x:["receber","aceitar","oferecer"]},
+ {a:"357",t:"Solicitar ou ___ dinheiro ou qualquer outra utilidade, a pretexto de influir em juiz, jurado, órgão do Ministério Público, funcionário de justiça, perito, tradutor, intérprete ou testemunha.",ok:"receber",x:["exigir","cobrar","obter"]},
+ {a:"312",t:"___-se o funcionário público de dinheiro, valor ou qualquer outro bem móvel, público ou particular, de que tem a posse em razão do cargo, ou desviá-lo, em proveito próprio ou alheio.",ok:"Apropriar",x:["Apoderar","Assenhorar","Valer"]},
+ {a:"319",t:"___ ou deixar de praticar, indevidamente, ato de ofício, ou praticá-lo contra disposição expressa de lei, para satisfazer interesse ou sentimento pessoal.",ok:"Retardar",x:["Omitir","Recusar","Protelar"]},
+ {a:"320",t:"Deixar o funcionário, por ___, de responsabilizar subordinado que cometeu infração no exercício do cargo.",ok:"indulgência",x:["negligência","interesse pessoal","imprudência"]},
+ {a:"321",t:"___, direta ou indiretamente, interesse privado perante a administração pública, valendo-se da qualidade de funcionário.",ok:"Patrocinar",x:["Defender","Advogar","Intermediar"]},
+ {a:"329",t:"Opor-se à execução de ato ___, mediante violência ou ameaça a funcionário competente para executá-lo ou a quem lhe esteja prestando auxílio.",ok:"legal",x:["ilegal","judicial","administrativo"]},
+ {a:"331",t:"Desacatar funcionário público no exercício da função ou ___ dela.",ok:"em razão",x:["fora","a pretexto","antes"]},
+ {a:"339",t:"Dar causa à instauração de inquérito policial (...) contra alguém, imputando-lhe crime, infração ético-disciplinar ou ato ímprobo de que o sabe ___.",ok:"inocente",x:["culpado","suspeito","investigado"]},
+ {a:"340",t:"Provocar a ação de autoridade, comunicando-lhe a ocorrência de crime ou de contravenção que sabe ___.",ok:"não se ter verificado",x:["ter sido praticado por outrem","ser de menor potencial ofensivo","estar prescrito"]},
+ {a:"341",t:"Acusar-se, perante a autoridade, de crime inexistente ou praticado por ___.",ok:"outrem",x:["parente","menor de idade","cônjuge"]},
+ {a:"342",t:"Fazer afirmação falsa, ou negar ou ___ a verdade como testemunha, perito, contador, tradutor ou intérprete em processo judicial, ou administrativo, inquérito policial, ou em juízo arbitral.",ok:"calar",x:["omitir","ocultar","distorcer"]},
+ {a:"345",t:"Fazer justiça pelas próprias mãos, para satisfazer pretensão, embora ___, salvo quando a lei o permite.",ok:"legítima",x:["ilegítima","prescrita","ilícita"]},
+ {a:"347",t:"___ artificiosamente, na pendência de processo civil ou administrativo, o estado de lugar, de coisa ou de pessoa, com o fim de induzir a erro o juiz ou o perito.",ok:"Inovar",x:["Alterar","Modificar","Adulterar"]},
+ {a:"344",t:"Usar de violência ou ___, com o fim de favorecer interesse próprio ou alheio, contra autoridade, parte, ou qualquer outra pessoa que funciona ou é chamada a intervir em processo.",ok:"grave ameaça",x:["fraude","ameaça simples","coação moral"]},
+ {a:"305",t:"Destruir, suprimir ou ___, em benefício próprio ou de outrem, ou em prejuízo alheio, documento público ou particular verdadeiro, de que não podia dispor.",ok:"ocultar",x:["falsificar","extraviar","alterar"]},
+ {a:"313",t:"Apropriar-se de dinheiro ou qualquer utilidade que, no exercício do cargo, recebeu por ___ de outrem.",ok:"erro",x:["dolo","culpa","fraude"]},
+ {a:"315",t:"Dar às verbas ou rendas públicas aplicação ___ da estabelecida em lei.",ok:"diversa",x:["contrária","superior","inferior"]},
+ {a:"323",t:"___ cargo público, fora dos casos permitidos em lei.",ok:"Abandonar",x:["Afastar-se de","Renunciar a","Deixar"]},
+ {a:"307",t:"Atribuir-se ou atribuir a terceiro falsa identidade para obter ___, em proveito próprio ou alheio, ou para causar dano a outrem.",ok:"vantagem",x:["lucro","benefício fiscal","prova"]},
+ {a:"302",t:"Dar o ___, no exercício da sua profissão, atestado falso.",ok:"médico",x:["funcionário público","enfermeiro","perito"]},
+ {a:"300",t:"Reconhecer, como verdadeira, no exercício de função pública, ___ ou letra que o não seja.",ok:"firma",x:["rubrica","chancela","assinatura digital"]},
+ {a:"314",t:"___ livro oficial ou qualquer documento, de que tem a guarda em razão do cargo; sonegá-lo ou inutilizá-lo, total ou parcialmente.",ok:"Extraviar",x:["Destruir","Subtrair","Ocultar"]},
+ {a:"336",t:"Rasgar ou, de qualquer forma, inutilizar ou ___ edital afixado por ordem de funcionário público.",ok:"conspurcar",x:["ocultar","alterar","retirar"]},
+ {a:"328",t:"___ o exercício de função pública.",ok:"Usurpar",x:["Antecipar","Prolongar","Simular"]},
+ {a:"346",t:"Tirar, suprimir, destruir ou danificar coisa ___, que se acha em poder de terceiro por determinação judicial ou convenção.",ok:"própria",x:["alheia","pública","comum"]},
+ {a:"325",t:"Revelar fato de que tem ciência em razão do cargo e que deva permanecer em ___, ou facilitar-lhe a revelação.",ok:"segredo",x:["sigilo de justiça","arquivo","reserva legal"]}
+];
+
+/* Estilo VUNESP: 5 alternativas, a primeira é sempre a correta (são embaralhadas na tela) */
+const QS=[
+ {a:["333","317"],p:"Sobre os crimes de corrupção, assinale a alternativa correta.",o:["O particular que apenas atende à solicitação do funcionário e lhe entrega a vantagem não pratica corrupção ativa, cujos núcleos são oferecer ou prometer.","A corrupção ativa só se consuma com a efetiva entrega da vantagem ao funcionário.","A corrupção passiva exige que o funcionário efetivamente pratique o ato de ofício.","A concussão tem como núcleo o verbo solicitar.","A corrupção passiva é punida com detenção, de 2 a 12 anos, e multa."],e:"Os núcleos do art. 333 são oferecer e prometer. Corrupção ativa e passiva são crimes formais, e a pena de ambas é de RECLUSÃO de 2 a 12 anos."},
+ {a:["327"],p:"Para os efeitos penais, considera-se funcionário público",o:["quem, embora transitoriamente ou sem remuneração, exerce cargo, emprego ou função pública.","apenas quem ocupa cargo efetivo e remunerado.","somente o servidor estatutário da administração direta.","apenas quem exerce função de direção ou assessoramento.","qualquer empregado de empresa privada que tenha contrato com o poder público, independentemente da atividade."],e:"Art. 327, caput. A equiparação do §1º exige empresa contratada ou conveniada para atividade TÍPICA da Administração."},
+ {a:["312-2"],p:"Servidor que, por negligência, concorreu para que terceiro subtraísse bens da repartição, e reparou o dano antes da sentença irrecorrível,",o:["terá extinta a punibilidade.","terá a pena reduzida de metade.","responderá por peculato doloso, com atenuante.","responderá por peculato-furto.","não terá qualquer benefício, pois a reparação só vale no peculato doloso."],e:"Peculato culposo (§2º) + reparação antes da sentença irrecorrível = extinção da punibilidade (§3º)."},
+ {a:["342"],p:"A testemunha que fez afirmação falsa em audiência e, antes da sentença no processo em que ocorreu o ilícito, retrata-se,",o:["não será punida, pois o fato deixa de ser punível.","terá a pena reduzida de 1/3.","só será beneficiada se a retratação ocorrer após o trânsito em julgado.","terá a pena diminuída de metade.","poderá receber perdão judicial, a critério do juiz."],e:"Art. 342, §2º: o fato deixa de ser punível."},
+ {a:["339"],p:"Maria, sabendo da inocência de Pedro, deu causa à instauração de inquérito policial contra ele, imputando-lhe crime, e para isso se valeu de nome suposto. Maria praticou",o:["denunciação caluniosa, com pena aumentada de sexta parte.","comunicação falsa de crime, com pena aumentada de metade.","denunciação caluniosa, com pena diminuída de metade.","autoacusação falsa.","falso testemunho."],e:"Art. 339, §1º: anonimato ou nome suposto aumenta a pena de 1/6. A diminuição de metade é para imputação de contravenção."},
+ {a:["347"],p:"Quem inova artificiosamente o estado de lugar, para induzir a erro o perito, com o fim de produzir efeito em processo penal ainda não iniciado,",o:["responde por fraude processual, com as penas aplicadas em dobro.","não comete crime, pois o processo ainda não foi iniciado.","responde por fraude processual, com pena aumentada de 1/3.","responde por falso testemunho.","responde por fraude processual, mas somente mediante queixa."],e:"Art. 347, parágrafo único."},
+ {a:["345"],p:"No crime de exercício arbitrário das próprias razões praticado sem emprego de violência, a ação penal é",o:["privada, procedendo-se somente mediante queixa.","pública incondicionada.","pública condicionada à representação.","pública condicionada à requisição do Ministro da Justiça.","inexistente, pois sem violência não há crime."],e:"Art. 345, parágrafo único."},
+ {a:["297"],p:"Para os fins do crime de falsificação de documento público, equipara-se a documento público",o:["o testamento particular.","o cartão de crédito.","o contrato particular de locação.","o atestado médico.","o recibo particular de pagamento."],e:"Art. 297, §2º: paraestatal, título ao portador ou transmissível por endosso, ações de sociedade comercial, livros mercantis e testamento particular. Cartão é documento particular."},
+ {a:["299"],p:"A falsidade ideológica cometida em documento particular é punida com",o:["reclusão, de 1 a 3 anos, e multa.","reclusão, de 1 a 5 anos, e multa.","detenção, de 1 a 3 anos, e multa.","reclusão, de 2 a 6 anos, e multa.","detenção, de 6 meses a 2 anos."],e:"Art. 299: público 1 a 5; particular 1 a 3 (reclusão e multa)."},
+ {a:["304"],p:"Quem faz uso de documento que sabe ser falsificado está sujeito à pena",o:["cominada à falsificação ou à alteração.","da falsificação, reduzida de metade.","de detenção, de 1 a 6 meses.","de reclusão, de 1 a 4 anos, sempre.","da falsificação, reduzida de 1/3."],e:"Art. 304: o uso tem a pena do crime de falsificação correspondente."},
+ {a:["357","332"],p:"Solicitar dinheiro a pretexto de influir em testemunha de um processo caracteriza",o:["exploração de prestígio.","tráfico de influência.","corrupção ativa.","coação no curso do processo.","corrupção ativa de testemunha (art. 343)."],e:"Testemunha está na lista do art. 357 (juiz, jurado, MP, funcionário de justiça, perito, tradutor, intérprete, testemunha)."},
+ {a:["325-2"],p:"Na violação de sigilo funcional, se da ação ou omissão resulta dano à Administração Pública ou a outrem, a pena é de",o:["reclusão, de 2 a 6 anos, e multa.","detenção, de 6 meses a 2 anos, ou multa.","detenção, aumentada de 1/3.","reclusão, de 1 a 4 anos.","detenção, de 1 a 3 anos."],e:"Art. 325, §2º."},
+ {a:["329-1"],p:"No crime de resistência, se o ato, em razão dela, não se executa, a pena é de",o:["reclusão, de 1 a 3 anos.","detenção, de 2 meses a 2 anos.","detenção, de 15 dias a 6 meses, e multa.","reclusão, de 2 a 5 anos.","detenção, aumentada da metade."],e:"Art. 329, §1º, sem prejuízo da pena correspondente à violência (§2º)."},
+ {a:["311-A"],p:"Sobre as fraudes em certames de interesse público (art. 311-A), é correto afirmar que",o:["o tipo alcança conteúdo sigiloso de processo seletivo para ingresso no ensino superior.","só pode ser praticado por funcionário público.","quem apenas facilita o acesso de pessoa não autorizada não comete crime.","a pena é aumentada da metade se cometido por funcionário público.","é punido com detenção."],e:"O tipo abrange concurso, avaliação ou exame públicos, vestibular e exames previstos em lei. §1º pune quem facilita; §3º: +1/3 se funcionário."},
+ {a:["317-2"],p:"O funcionário que, cedendo a pedido de um amigo influente, deixa de praticar ato de ofício com infração de dever funcional, sem receber vantagem, pratica",o:["corrupção passiva privilegiada.","prevaricação.","condescendência criminosa.","concussão.","advocacia administrativa."],e:"Art. 317, §2º: “cedendo a pedido ou influência de outrem”. Na prevaricação, o móvel é interesse ou sentimento pessoal."},
+ {a:["319"],p:"O funcionário que retarda ato de ofício para se vingar da parte, por quem nutre antipatia, pratica",o:["prevaricação.","corrupção passiva privilegiada.","condescendência criminosa.","abandono de função.","violação de sigilo funcional."],e:"Sentimento pessoal (vingança/antipatia) é o núcleo da prevaricação (art. 319)."},
+ {a:["327"],p:"Nos crimes praticados por funcionário público contra a administração, a pena é aumentada da terça parte quando os autores forem",o:["ocupantes de cargos em comissão ou de função de direção ou assessoramento de órgão da administração direta, sociedade de economia mista, empresa pública ou fundação instituída pelo poder público.","reincidentes em crime doloso.","servidores efetivos com mais de dez anos de serviço.","servidores temporários.","agentes que tenham agido por motivo torpe."],e:"Art. 327, §2º."},
+ {a:["343"],p:"Dar dinheiro a testemunha para que ela faça afirmação falsa em processo judicial configura crime punido com",o:["reclusão, de 3 a 4 anos, e multa.","reclusão, de 2 a 12 anos, e multa (corrupção ativa).","reclusão, de 2 a 4 anos, e multa, como partícipe de falso testemunho.","reclusão, de 1 a 4 anos, e multa (coação no curso do processo).","detenção, de 1 a 6 meses."],e:"Art. 343 (dar, oferecer ou prometer a testemunha, perito, contador, tradutor ou intérprete)."},
+ {a:["307"],p:"Segundo a Súmula 522 do STJ, a conduta de atribuir-se falsa identidade perante autoridade policial",o:["é típica, ainda que em situação de alegada autodefesa.","é atípica, por força do direito à autodefesa.","configura uso de documento falso.","só é típica se houver apresentação de documento.","configura o crime do art. 308."],e:"Súmula 522 do STJ."},
+ {a:["302"],p:"O médico que, no exercício da profissão, dá atestado falso com o fim de lucro",o:["responde pelo art. 302, com detenção de 1 mês a 1 ano, aplicando-se também multa.","responde pelo art. 301, com detenção de 2 meses a 1 ano.","responde por falsidade ideológica em documento particular.","responde por falsificação de documento público.","não comete crime, pois atestado médico não é documento."],e:"Art. 302 e parágrafo único."},
+ {a:["312"],p:"Quanto ao princípio da insignificância nos crimes contra a Administração Pública, o STJ entende que",o:["é inaplicável.","aplica-se sempre que o prejuízo for inferior a um salário mínimo.","aplica-se apenas ao peculato culposo.","aplica-se à corrupção ativa de pequeno valor.","aplica-se quando o funcionário é primário."],e:"Súmula 599 do STJ."},
+ {a:["320","319","331","325","329"],p:"Assinale o crime punido com detenção, de 15 dias a 1 mês, ou multa.",o:["Condescendência criminosa.","Prevaricação.","Desacato.","Violação de sigilo funcional.","Resistência."],e:"Condescendência: 15 dias a 1 mês ou multa (também abandono de função simples e exercício ilegalmente antecipado). Prevaricação: 3 meses a 1 ano; desacato e sigilo: 6 meses a 2 anos; resistência: 2 meses a 2 anos."},
+ {a:["346"],p:"Tirar coisa própria que se acha em poder de terceiro por determinação judicial",o:["é crime punido com detenção, de 6 meses a 2 anos, e multa.","é furto.","é exercício arbitrário das próprias razões.","é fraude processual.","é atípico, por se tratar de coisa própria."],e:"Art. 346."},
+ {a:["344"],p:"A coação no curso do processo é punida com",o:["reclusão, de 1 a 4 anos, e multa, além da pena correspondente à violência.","detenção, de 1 a 6 meses, ou multa.","reclusão, de 2 a 8 anos, e multa.","detenção, de 6 meses a 2 anos, ou multa.","reclusão, de 3 a 4 anos, e multa."],e:"Art. 344."},
+ {a:["313-A","313-B"],p:"O funcionário autorizado que insere dados falsos no banco de dados da Administração, para obter vantagem indevida, pratica o crime do",o:["art. 313-A, punido com reclusão de 2 a 12 anos e multa.","art. 313-B, punido com detenção de 3 meses a 2 anos e multa.","art. 299 (falsidade ideológica).","art. 325 (violação de sigilo funcional).","art. 297 (falsificação de documento público)."],e:"Dados = 313-A (reclusão, 2 a 12). Programa/sistema = 313-B (detenção)."},
+ {a:["328-1"],p:"O particular que usurpa o exercício de função pública e aufere vantagem com isso está sujeito à pena de",o:["reclusão, de 2 a 5 anos, e multa.","detenção, de 3 meses a 2 anos, e multa.","reclusão, de 2 a 12 anos, e multa.","detenção, de 15 dias a 1 mês, ou multa.","reclusão, de 1 a 3 anos."],e:"Art. 328, parágrafo único."},
+ {a:["316-2"],p:"O funcionário que desvia, em proveito próprio, o que recebeu indevidamente para recolher aos cofres públicos pratica crime punido com",o:["reclusão, de 2 a 12 anos, e multa (art. 316, §2º).","reclusão, de 3 a 8 anos, e multa (excesso de exação simples).","detenção, de 1 a 3 meses, ou multa.","reclusão, de 1 a 4 anos, e multa (art. 313).","reclusão, de 2 a 5 anos, e multa."],e:"Art. 316, §2º."},
+ {a:["331"],p:"A respeito do desacato, assinale a alternativa correta.",o:["Pode ser praticado contra funcionário público no exercício da função ou em razão dela.","Exige violência física contra o funcionário.","Só existe se o funcionário estiver dentro da repartição.","É punido com reclusão, de 2 a 5 anos.","Confunde-se com a desobediência."],e:"Art. 331: no exercício da função ou em razão dela; detenção de 6 meses a 2 anos, ou multa."},
+ {a:["332"],p:"No tráfico de influência, a pena é aumentada",o:["da metade, se o agente alega ou insinua que a vantagem é também destinada ao funcionário.","de 1/3, se o agente alega ou insinua que a vantagem é também destinada ao funcionário.","de 1/6, se o agente se vale de nome suposto.","em dobro, se o ato for judicial.","de 2/3, se o agente for funcionário público."],e:"Art. 332, parágrafo único: METADE. No art. 357 (exploração de prestígio) o aumento é de 1/3."},
+ {a:["340","339"],p:"Quem comunica à autoridade a ocorrência de crime que sabe não ter acontecido, sem apontar autor, pratica",o:["comunicação falsa de crime ou de contravenção.","denunciação caluniosa.","autoacusação falsa.","falso testemunho.","fraude processual."],e:"Art. 340. Imputar a alguém determinado seria denunciação caluniosa."},
+ {a:["323"],p:"O abandono de cargo público ocorrido em lugar compreendido na faixa de fronteira é punido com",o:["detenção, de 1 a 3 anos, e multa.","detenção, de 15 dias a 1 mês, ou multa.","detenção, de 3 meses a 1 ano, e multa.","reclusão, de 2 a 6 anos.","reclusão, de 1 a 4 anos."],e:"Art. 323, §2º."}
+];
+
+/* ================== RAIO-X DA BANCA ==================
+   Questões novas que treinam os padrões que mais aparecem nas provas VUNESP de Escrevente (2010–2025):
+   formal x material, próprio x comum, modalidade culposa, qualificadora x causa de aumento, casos com dois agentes. */
+CASOS.push(...[
+ {a:"297",op:["297","299","298","304"],t:"Sujeito raspa e regrava o número do chassi no Certificado de Registro e Licenciamento do Veículo (CRLV) do seu carro.",e:"O CRLV é documento público e houve alteração material: falsificação de documento público (art. 297)."},
+ {a:"299",op:["299","297","307","304"],t:"Notificado de uma multa, o dono do carro preenche o formulário do órgão de trânsito indicando como condutor uma pessoa que não dirigia o veículo.",e:"O formulário é verdadeiro, mas recebeu declaração falsa sobre fato juridicamente relevante: falsidade ideológica."},
+ {a:"308",op:["308","307","304","297"],t:"Com mandado de prisão contra si, o motorista apresenta numa blitz a CNH verdadeira do amigo que está no carro, que concorda com isso.",e:"Usar como próprio documento de identidade alheio é o art. 308. E o amigo que CEDE o documento para outro usar também pratica o 308. Não é falsa identidade (art. 307), que não envolve uso de documento."},
+ {a:"311-A",op:["311-A","325","307","330"],t:"Candidato termina a prova de um exame público e, já fora da sala, dita o gabarito por ponto eletrônico à namorada, que marca as respostas. Os dois são flagrados; o exame não precisa ser anulado.",e:"Ele DIVULGOU e ela UTILIZOU conteúdo sigiloso: os dois praticam o 311-A. Dano à administração não é exigido (se houvesse, seria a forma qualificada do §2º)."},
+ {a:"311-A",op:["311-A","325","319","313-B"],t:"Funcionário de empresa privada contratada para organizar um concurso, irritado com a chefia, copia a prova ainda não aplicada e a publica na internet só para desmoralizar a instituição. O concurso é adiado.",e:"Basta o fim de comprometer a credibilidade do certame; não precisa de vantagem nem de ser funcionário público: art. 311-A. Como houve dano à administração, incide o §2º."},
+ {a:"316",op:["316","317","321","333"],t:"Recém-aprovado, antes de tomar posse, o futuro fiscal manda um intermediário exigir de um empresário um “presente” para a esposa, em razão do cargo que vai assumir.",e:"Exigir, para outrem, indiretamente, antes de assumir a função mas em razão dela: concussão."},
+ {a:"316",op:["316","317","321","319"],t:"Servidora exige, em razão da função, que uma empresa contratada pelo órgão empregue o filho dela.",e:"Exigir vantagem indevida em razão da função é concussão; a vantagem não precisa ser em dinheiro."},
+ {a:"317",op:["317","316","333","319"],t:"Servidor aceita a promessa de passagens aéreas para a família, feita por um particular interessado em processo sob sua responsabilidade. As passagens nunca chegam a ser entregues.",e:"Aceitar promessa de vantagem indevida já consuma a corrupção passiva (crime formal)."},
+ {a:"315",op:["315","312","319","321"],t:"Gestor público aplica verba que a lei destina à educação em ações de saúde, sem desviar nada para si.",e:"Aplicação diversa da estabelecida em lei, sem proveito próprio: emprego irregular de verbas públicas (art. 315)."},
+ {a:"336",op:["336","337","330","347"],t:"Hóspede rompe de propósito o lacre que o perito criminal colocou na porta do quarto de hotel onde ocorreu um crime.",e:"Violar ou inutilizar sinal empregado por ordem de funcionário para cerrar objeto ou local: art. 336."},
+ {a:"357",op:["357","332","317","333"],t:"Advogado pede dinheiro ao cliente dizendo ser amigo do escrevente do cartório e que parte do valor iria para ele, para “acelerar” o processo. É mentira, e o cliente desiste de pagar.",e:"Escrevente é funcionário de justiça, que está na lista do art. 357. Solicitar já consuma: exploração de prestígio, com aumento de 1/3 por insinuar que o dinheiro iria também para ele. O cliente não praticou crime."},
+ {a:"341",op:["341","342","340","339"],t:"Para livrar o filho, o pai vai à delegacia e assume falsamente a autoria de um furto que o filho cometeu.",e:"Autoacusação falsa (art. 341). Não existe escusa por ser em favor de parente."},
+ {a:"359",op:["359","330","328","347"],t:"Afastado por decisão judicial, numa ação penal, do conselho de uma empresa da qual é sócio, o administrador continua votando nas reuniões e assinando atas.",e:"Exercer função ou direito de que foi suspenso ou privado por decisão judicial: art. 359."},
+ {a:"343",op:["343","333","342","317"],t:"Empresário entrega R$ 20 mil ao perito judicial para que ele faça afirmação falsa no laudo de um processo criminal.",e:"Dar dinheiro a perito para afirmação falsa: art. 343, com aumento de 1/6 a 1/3 por ser prova para processo penal. É crime contra a Administração da Justiça, não a corrupção ativa do art. 333."}
+].map(x=>Object.assign(x,{b:1})));
+
+VF.push(...[
+ {s:"Concussão e excesso de exação admitem modalidade culposa.",v:0,a:"316",e:"Não. Entre os crimes funcionais, só o peculato tem forma culposa."},
+ {s:"Entre os crimes praticados por funcionário público contra a administração, o peculato é o único com modalidade culposa expressa.",v:1,a:"312-2",e:"Art. 312, §2º. Concussão, corrupção, prevaricação e abandono não têm forma culposa."},
+ {s:"Os crimes praticados por particular contra a administração em geral (arts. 328 a 337) não preveem modalidade culposa.",v:1,a:"330",e:"Nenhum deles tem forma culposa."},
+ {s:"O crime de inserção de dados falsos em sistema (art. 313-A) exige que o agente efetivamente obtenha a vantagem indevida.",v:0,a:"313-A",e:"Basta o FIM de obter vantagem ou causar dano."},
+ {s:"Facilitar a inserção de dados falsos no sistema, ou excluir indevidamente dados corretos, também configura o art. 313-A.",v:1,a:"313-A",e:"O tipo traz: inserir, facilitar a inserção, alterar ou excluir indevidamente."},
+ {s:"Suprimir o carimbo que indica a inutilização de um papel público, para torná-lo novamente utilizável, é conduta atípica por falta de previsão legal.",v:0,a:"293",e:"Está no art. 293, §2º: reclusão, de 1 a 4 anos, e multa."},
+ {s:"Quem recebe de boa-fé papel público falsificado e o restitui à circulação depois de saber da falsidade comete crime, com pena menor que a do falsificador.",v:1,a:"293",e:"Art. 293, §4º: detenção, de 6 meses a 2 anos, ou multa."},
+ {s:"Petrechos de falsificação é crime próprio de funcionário público.",v:0,a:"294",e:"É crime comum. Ser funcionário só aumenta a pena (art. 295), se prevalecer-se do cargo."},
+ {s:"Petrechos de falsificação é tipo misto alternativo (crime de ação múltipla).",v:1,a:"294",e:"Fabricar, adquirir, fornecer, possuir ou guardar: praticar vários verbos no mesmo contexto é crime único."},
+ {s:"Na falsificação de selo ou sinal público, usar indevidamente selo verdadeiro também é crime.",v:1,a:"296",e:"Art. 296, §1º, II."},
+ {s:"A falsificação de documento público só se configura se a falsificação for total.",v:0,a:"297",e:"“No todo ou em parte”, e também alterar documento público verdadeiro."},
+ {s:"A falsificação de documento público é crime próprio de funcionário público.",v:0,a:"297",e:"É crime comum; o funcionário que se prevalece do cargo tem pena aumentada de 1/6."},
+ {s:"Nas falsificações materiais (arts. 297 e 298), o vício está na forma do documento; na falsidade ideológica, no conteúdo.",v:1,a:"299",e:"Material: autenticidade. Ideológica: conteúdo."},
+ {s:"A falsidade ideológica em documento público só pode ser praticada por funcionário público.",v:0,a:"299",e:"É crime comum: o particular pode “fazer inserir” declaração falsa em documento público."},
+ {s:"A falsidade ideológica pode ocorrer por omissão de declaração que devia constar do documento.",v:1,a:"299",e:"O primeiro verbo do art. 299 é “omitir”."},
+ {s:"Na falsidade de atestado médico, a multa é aplicada sempre, haja ou não fim de lucro.",v:0,a:"302",e:"A multa só se aplica se houver fim de lucro."},
+ {s:"A supressão de documento exige que o documento seja verdadeiro.",v:1,a:"305",e:"“...documento público ou particular verdadeiro, de que não podia dispor”."},
+ {s:"Ceder a outra pessoa o próprio documento de identidade, para que ela o use, é conduta atípica.",v:0,a:"308",e:"Art. 308, segunda parte: ceder a outrem documento de identidade, próprio ou de terceiro."},
+ {s:"Atribuir a terceiro falsa identidade é atípico; só é crime atribuir falsa identidade a si mesmo.",v:0,a:"307",e:"“Atribuir-se ou atribuir a terceiro”."},
+ {s:"Para o crime de fraude em certames de interesse público, exige-se dano à administração pública.",v:0,a:"311-A",e:"O dano não é exigido; se ocorrer, qualifica o crime (§2º)."},
+ {s:"Na fraude em certames, o dano à administração é mera causa de aumento de pena.",v:0,a:"311-A",e:"É QUALIFICADORA: nova pena, reclusão de 2 a 6 anos."},
+ {s:"Na fraude em certames, se o agente é funcionário público, a pena é aplicada em dobro.",v:0,a:"311-A",e:"Aumenta de 1/3 (§3º)."},
+ {s:"A divulgação de conteúdo NÃO sigiloso de um certame também configura o art. 311-A.",v:0,a:"311-A",e:"O objeto é “conteúdo sigiloso”."},
+ {s:"Aceitar promessa de vantagem indevida, sem chegar a recebê-la, não configura corrupção passiva.",v:0,a:"317",e:"Aceitar promessa é um dos núcleos; o crime é formal."},
+ {s:"O funcionário que exige vantagem indevida em razão da função pratica corrupção passiva.",v:0,a:"316",e:"Exigir é concussão. Corrupção passiva é solicitar, receber ou aceitar promessa."},
+ {s:"A advocacia administrativa exige que o funcionário seja advogado.",v:0,a:"321",e:"Basta ser funcionário e patrocinar interesse privado valendo-se dessa qualidade."},
+ {s:"O patrocínio indireto de interesse privado também configura advocacia administrativa.",v:1,a:"321",e:"“Patrocinar, direta ou indiretamente”."},
+ {s:"Na advocacia administrativa com interesse ilegítimo, aplicam-se detenção e multa cumulativamente.",v:1,a:"321",e:"Parágrafo único: detenção, de 3 meses a 1 ano, ALÉM DA multa. No caput, é detenção OU multa."},
+ {s:"O abandono de função é crime material: só se consuma se houver prejuízo público.",v:0,a:"323",e:"O prejuízo público qualifica (§1º), mas não é exigido para o caput."},
+ {s:"O desacato pode ocorrer mesmo fora do exercício da função, desde que a ofensa seja em razão dela.",v:1,a:"331",e:"“No exercício da função ou em razão dela”."},
+ {s:"A corrupção ativa exige que o funcionário efetivamente retarde ou omita o ato de ofício.",v:0,a:"333",e:"É formal. Se o funcionário retardar ou omitir, a pena aumenta de 1/3."},
+ {s:"O art. 337 alcança também documento confiado à custódia de particular em serviço público.",v:1,a:"337",e:"“...confiado à custódia de funcionário, em razão de ofício, ou de particular em serviço público”."},
+ {s:"Inutilização de edital ou de sinal (art. 336) e subtração de documento (art. 337) são crimes próprios de funcionário público.",v:0,a:"336",e:"São crimes de particular contra a administração: qualquer pessoa pode praticar."},
+ {s:"Imputar falsamente a alguém uma contravenção, dando causa a inquérito, não configura denunciação caluniosa.",v:0,a:"339",e:"Configura, com a pena diminuída de metade (§2º)."},
+ {s:"Acusar-se falsamente, perante a autoridade, de uma contravenção penal configura autoacusação falsa.",v:0,a:"341",e:"O art. 341 fala apenas em “crime”."},
+ {s:"A autoacusação falsa feita para proteger ascendente ou descendente é atípica.",v:0,a:"341",e:"Não há essa exceção no tipo."},
+ {s:"Dar causa a inquérito civil contra alguém, imputando-lhe crime de que o sabe inocente, configura denunciação caluniosa.",v:1,a:"339",e:"Inquérito civil está na lista do art. 339."},
+ {s:"O falso testemunho pode ser praticado por conduta positiva (afirmar falsamente) ou negativa (negar ou calar a verdade).",v:1,a:"342",e:"“Fazer afirmação falsa, ou negar ou calar a verdade”."},
+ {s:"O falso testemunho exige que a testemunha receba alguma vantagem.",v:0,a:"342",e:"Não exige. O suborno só aumenta a pena (§1º)."},
+ {s:"No falso testemunho, a retratação vale se feita até a sentença do processo instaurado para apurar o próprio falso.",v:0,a:"342",e:"Deve ser antes da sentença NO PROCESSO EM QUE OCORREU O ILÍCITO."},
+ {s:"O aumento da coação no curso do processo quando envolve crime contra a dignidade sexual é causa de aumento, não qualificadora.",v:1,a:"344",e:"Aumenta de 1/3 até a metade: causa de aumento."},
+ {s:"A fraude processual exige o especial fim de induzir a erro o juiz ou o perito.",v:1,a:"347",e:"É o elemento subjetivo especial do tipo."},
+ {s:"A fraude processual é punida com reclusão e multa.",v:0,a:"347",e:"Detenção, de 3 meses a 2 anos, e multa (em dobro se para processo penal)."},
+ {s:"A exploração de prestígio é crime próprio, que só pode ser praticado pelas pessoas listadas no tipo.",v:0,a:"357",e:"É crime comum. As pessoas listadas (juiz, jurado, MP...) são aquelas sobre quem o agente diz influir."},
+ {s:"A exploração de prestígio só se consuma com o efetivo recebimento do dinheiro.",v:0,a:"357",e:"“Solicitar OU receber”: solicitar já consuma."},
+ {s:"A exploração de prestígio está no capítulo dos crimes contra a Administração da Justiça.",v:1,a:"357",e:"Já o tráfico de influência (art. 332) está entre os crimes de particular contra a administração em geral."},
+ {s:"No exercício arbitrário das próprias razões com emprego de violência, a ação penal é pública.",v:1,a:"345",e:"Só se procede mediante queixa quando NÃO há violência."},
+ {s:"A desobediência a decisão judicial sobre perda ou suspensão de direito admite modalidade culposa.",v:0,a:"359",e:"Não há forma culposa."},
+ {s:"O peculato é punido com reclusão, de 4 a 12 anos, e multa.",v:0,a:"312",e:"Reclusão, de 2 a 12 anos, e multa."},
+ {s:"Para fins penais, só é funcionário público quem exerce a função com remuneração.",v:0,a:"327",e:"“Embora transitoriamente ou sem remuneração”."}
+].map(x=>Object.assign(x,{b:1})));
+
+LAC.push(...[
+ {a:"293",t:"Falsificar, fabricando-os ou ___: selo destinado a controle tributário, papel selado ou qualquer papel de emissão legal destinado à arrecadação de tributo.",ok:"alterando-os",x:["copiando-os","imitando-os","reproduzindo-os"]},
+ {a:"327",t:"Equipara-se a funcionário público quem (...) trabalha para empresa prestadora de serviço contratada ou conveniada para a execução de atividade ___ da Administração Pública.",ok:"típica",x:["essencial","exclusiva","acessória"]},
+ {a:"337",t:"Subtrair, ou inutilizar, total ou parcialmente, livro oficial, processo ou documento confiado à custódia de funcionário, em razão de ofício, ou de ___ em serviço público.",ok:"particular",x:["terceiro","advogado","perito"]},
+ {a:"342",t:"O fato deixa de ser punível se, antes da ___ no processo em que ocorreu o ilícito, o agente se retrata ou declara a verdade.",ok:"sentença",x:["denúncia","sentença irrecorrível","audiência de instrução"]},
+ {a:"311-A",t:"Utilizar ou divulgar, indevidamente, com o fim de beneficiar a si ou a outrem, ou de comprometer a ___ do certame, conteúdo sigiloso.",ok:"credibilidade",x:["lisura","validade","imparcialidade"]}
+].map(x=>Object.assign(x,{b:1})));
+
+QS.push(...[
+ {a:["316","316-1"],p:"Sobre a concussão e o excesso de exação (art. 316), é correto afirmar que",o:["são crimes formais, consumando-se com a exigência.","são crimes materiais, exigindo o recebimento da vantagem.","admitem modalidade culposa.","o excesso de exação admite extinção da punibilidade pela reparação do dano antes da sentença.","a concussão é formal, mas o excesso de exação é material."],e:"Ambos se consumam com a exigência. Reparação que extingue a punibilidade só existe no peculato culposo."},
+ {a:["313-A"],p:"Para a configuração do crime de inserção de dados falsos em sistema de informações (art. 313-A),",o:["basta o fim de obter vantagem indevida ou causar dano, sem necessidade de obtê-la efetivamente.","é necessário que o funcionário insira pessoalmente os dados; facilitar a inserção é atípico.","a exclusão indevida de dados corretos é atípica.","exige-se dano efetivo à Administração.","basta ser funcionário público, ainda que não autorizado a operar o sistema."],e:"Crime formal, com núcleos inserir, facilitar, alterar ou excluir. O sujeito ativo é o funcionário AUTORIZADO."},
+ {a:["293"],p:"O agente suprime o carimbo de inutilização aposto em guia de arrecadação já cancelada, para usá-la de novo. A conduta é",o:["típica, prevista em parágrafo do art. 293, com pena própria de reclusão, de 1 a 4 anos, e multa.","atípica, por ausência de previsão legal.","punida como a falsificação do caput, com reclusão de 2 a 8 anos.","típica apenas por analogia com a falsificação.","absorvida pelo uso de documento falso."],e:"Art. 293, §2º."},
+ {a:["293"],p:"Quem recebe de boa-fé selo tributário falsificado e, depois de conhecer a falsidade, o restitui à circulação",o:["comete crime contra a fé pública, com detenção de 6 meses a 2 anos, ou multa.","não comete crime, porque o recebeu de boa-fé.","recebe a mesma pena de quem falsificou o selo.","comete falsidade ideológica.","comete apenas estelionato."],e:"Art. 293, §4º."},
+ {a:["294"],p:"A respeito do crime de petrechos de falsificação (art. 294), é correto afirmar que",o:["é tipo misto alternativo, ou de ação múltipla.","é crime próprio de funcionário público.","admite modalidade culposa.","tem por objeto instrumentos destinados a falsificar documentos particulares.","é crime material."],e:"Vários verbos (fabricar, adquirir, fornecer, possuir, guardar) e crime comum."},
+ {a:["295","294"],p:"Pelo art. 295 do CP, a pena dos crimes dos arts. 293 e 294 é aumentada de sexta parte se",o:["o agente é funcionário público e comete o crime prevalecendo-se do cargo.","o agente é funcionário público, em qualquer situação.","há intuito de lucro.","há prejuízo ao erário.","o crime é cometido contra órgão da administração indireta."],e:"Não basta ser funcionário: precisa se prevalecer do cargo."},
+ {a:["296"],p:"Sobre o crime de falsificação do selo ou sinal público (art. 296), é correto afirmar que",o:["utilizar indevidamente selo ou sinal verdadeiro, em prejuízo de outrem ou em proveito próprio ou alheio, também é crime.","selos destinados a autenticar atos de Município não estão protegidos.","é crime próprio de funcionário público.","todas as modalidades exigem o fim de prejudicar terceiro.","somente a fabricação é punida, não a alteração."],e:"Art. 296, §1º, II. O caput protege atos da União, de Estado ou de Município."},
+ {a:["297"],p:"Sobre o art. 297: I. a mera alteração de documento público verdadeiro também é crime; II. o testamento particular é equiparado a documento público; III. os livros mercantis são equiparados a documento particular. Está correto o que se afirma em",o:["I e II, apenas.","I, apenas.","II e III, apenas.","I, II e III.","III, apenas."],e:"Livros mercantis são equiparados a documento PÚBLICO (§2º)."},
+ {a:["299"],p:"A falsidade ideológica: I. pode recair sobre documento particular; II. pode ser praticada por omissão; III. exige que o agente seja funcionário público. Está correto o que se afirma em",o:["I e II, apenas.","I, apenas.","III, apenas.","I, II e III.","II e III, apenas."],e:"É crime comum; o funcionário que se prevalece do cargo só tem a pena aumentada de 1/6."},
+ {a:["297","299","302"],p:"Com relação aos crimes contra a fé pública, assinale a alternativa correta.",o:["Nas falsificações de documento público e particular, o vício está na autenticidade (forma); na falsidade ideológica, no conteúdo.","Falsificação de papéis públicos, petrechos e falsificação de selo são crimes próprios de funcionário público.","A falsidade de atestado médico pode ser praticada por qualquer pessoa.","Quem falsifica e depois usa o documento responde pelos dois crimes, em concurso.","O falso reconhecimento de firma ou letra só existe em documento público."],e:"Quem falsifica e usa responde por um só crime (o uso é absorvido). O art. 300 tem pena para documento público e para particular."},
+ {a:["311-A"],p:"No crime de fraude em certames de interesse público (art. 311-A), é correto afirmar que",o:["não se exige dano à administração, mas exige-se o fim de beneficiar a si ou a outrem, ou de comprometer a credibilidade do certame.","exige-se efetivo prejuízo para a consumação.","há previsão de modalidade culposa.","se praticado por funcionário público, a pena é aplicada em dobro.","o dano à administração é mera causa de aumento de pena."],e:"Dano = qualificadora (2 a 6). Funcionário = +1/3."},
+ {a:["308","307"],p:"Mévia empresta sua carteira da OAB à irmã gêmea, que a usa várias vezes para entrar no presídio como advogada. É correto afirmar que",o:["ambas praticam o crime do art. 308: a irmã usa documento alheio e Mévia cede o próprio documento.","ambas praticam falsa identidade (art. 307).","só a irmã pratica crime, pois ceder documento é atípico.","nenhuma pratica crime, pois não houve vantagem patrimonial.","ambas praticam uso de documento falso (art. 304)."],e:"O art. 308 pune quem usa como próprio documento de identidade alheio e quem o cede para outro usar."},
+ {a:["315","316","317","321","312"],p:"A respeito dos crimes praticados por funcionário público contra a administração, assinale a alternativa correta.",o:["Quem aplica verba destinada por lei à educação em ações de saúde pratica, em tese, emprego irregular de verbas públicas.","A funcionária que exige, em razão da função, que uma empresa contrate o filho dela pratica corrupção passiva.","Aceitar promessa de vantagem não configura corrupção passiva, que exige o recebimento.","Quem não é advogado não pode praticar advocacia administrativa.","O peculato exige que o bem apropriado seja público."],e:"Exigir = concussão; aceitar promessa = corrupção consumada; advocacia administrativa não exige ser advogado; peculato alcança bem particular."},
+ {a:["330","331","328","333","329"],p:"A respeito dos crimes praticados por particular contra a administração em geral, assinale a alternativa correta.",o:["Não há previsão de modalidade culposa.","O desacato exige que o funcionário esteja no exercício da função, ainda que a ofensa seja em razão dela.","A usurpação de função pública só se configura se o agente obtiver vantagem.","A corrupção ativa exige que o funcionário retarde ou omita o ato de ofício.","A resistência se configura contra a execução de ato ilegal."],e:"Desacato: no exercício OU em razão da função. Vantagem na usurpação qualifica. Corrupção ativa é formal. Resistência exige ato legal."},
+ {a:["336","337"],p:"Sobre os crimes dos arts. 336 (inutilização de edital ou de sinal) e 337 (subtração ou inutilização de livro ou documento), é correto afirmar que",o:["o art. 337 alcança documento confiado à custódia de particular em serviço público.","são crimes próprios de funcionário público.","não admitem tentativa.","a inutilização apenas parcial do documento diminui a pena.","violar sinal que cerra objeto de interesse da justiça é forma qualificada do art. 336."],e:"O art. 337 pune a inutilização total ou parcial, com a mesma pena."},
+ {a:["345","344","339","342","347"],p:"A respeito dos crimes contra a Administração da Justiça, assinale a alternativa correta.",o:["No exercício arbitrário das próprias razões, sem violência, procede-se mediante queixa; com violência, a ação é pública.","A coação no curso do processo é qualificada quando o processo envolve crime contra a dignidade sexual.","Imputar falsamente uma contravenção, dando causa a inquérito, não configura denunciação caluniosa.","A retratação no falso testemunho é causa de diminuição de pena.","A fraude processual voltada a processo penal é qualificada, com pena de reclusão."],e:"Coação (dignidade sexual) e fraude processual (dobro) têm causas de aumento. Contravenção diminui a pena da denunciação. Retratação torna o fato não punível."},
+ {a:["347"],p:"O crime de fraude processual (art. 347)",o:["exige o especial fim de induzir a erro o juiz ou o perito.","admite modalidade culposa.","é punido com reclusão e multa.","só se configura em processo penal.","exige, quando voltado a processo penal, que este já tenha sido iniciado."],e:"Detenção e multa; processo civil ou administrativo no caput; processo penal, ainda que não iniciado, dobra a pena."},
+ {a:["357"],p:"A respeito do crime de exploração de prestígio (art. 357), é correto afirmar que",o:["é crime comum e formal, consumando-se com a simples solicitação.","é crime próprio, praticado só pelas pessoas listadas no tipo.","exige o efetivo recebimento do dinheiro.","a pena aumenta se o agente insinua que o dinheiro se destina a funcionário público estrangeiro.","admite modalidade culposa."],e:"O aumento de 1/3 é quando insinua destinar o dinheiro às pessoas do próprio tipo (juiz, jurado, MP...)."},
+ {a:["342"],p:"O crime de falso testemunho ou falsa perícia (art. 342)",o:["pode ocorrer em juízo arbitral, por conduta positiva ou negativa.","só pode ocorrer em processo judicial.","só pode ser praticado por conduta positiva.","exige que o agente receba vantagem.","admite retratação até o trânsito em julgado."],e:"Processo judicial, administrativo, inquérito policial ou juízo arbitral; afirmar, negar ou calar."},
+ {a:["341"],p:"Para livrar o filho, João assume falsamente, perante a autoridade policial, a autoria de um crime cometido pelo filho. João",o:["comete autoacusação falsa.","comete falso testemunho.","comete comunicação falsa de crime.","não comete crime, pois agiu para proteger descendente.","comete denunciação caluniosa."],e:"Art. 341: acusar-se de crime praticado por outrem."},
+ {a:["323"],p:"Sobre o abandono de função: I. é qualificado se resulta prejuízo público; II. é qualificado se ocorre em faixa de fronteira; III. só se consuma se houver prejuízo público. Está correto o que se afirma em",o:["I e II, apenas.","I, apenas.","I, II e III.","II e III, apenas.","III, apenas."],e:"O prejuízo não é exigido para o caput (crime formal); ele qualifica."},
+ {a:["321"],p:"Sobre a advocacia administrativa: I. pode ser praticada de forma indireta; II. se o interesse é ilegítimo, a pena é maior; III. exige que o agente seja advogado. Está correto o que se afirma em",o:["I e II, apenas.","I, apenas.","II, apenas.","I, II e III.","II e III, apenas."],e:"“Direta ou indiretamente”; ilegítimo: detenção de 3 meses a 1 ano, além da multa."},
+ {a:["317"],p:"A pena da corrupção passiva aumenta de 1/3 se, em consequência da vantagem ou promessa, o funcionário: I. retarda ou deixa de praticar ato de ofício; II. pratica ato de ofício infringindo dever funcional; III. age de forma premeditada. Está correto o que se afirma em",o:["I e II, apenas.","I, apenas.","II, apenas.","III, apenas.","I, II e III."],e:"Art. 317, §1º. Premeditação não está no tipo."},
+ {a:["339"],p:"Na denunciação caluniosa, a pena: I. aumenta se o agente se serve de anonimato; II. aumenta se ele usa nome suposto; III. diminui se a imputação é de contravenção. Está correto o que se afirma em",o:["I, II e III.","I e II, apenas.","II, apenas.","I e III, apenas.","II e III, apenas."],e:"§1º (+1/6) e §2º (metade)."},
+ {a:["344","341","342"],p:"Assinale a alternativa que contém apenas crimes contra a Administração da Justiça.",o:["Coação no curso do processo, autoacusação falsa e falsa perícia.","Prevaricação, condescendência criminosa e advocacia administrativa.","Falsa identidade, desacato e fraude processual.","Exploração de prestígio, tráfico de influência e corrupção ativa.","Denunciação caluniosa, desobediência e resistência."],e:"Tráfico de influência, desacato, desobediência e resistência são crimes de particular contra a administração em geral; falsa identidade é crime contra a fé pública."},
+ {a:["312-2"],p:"Qual destes crimes praticados por funcionário público contra a administração tem modalidade culposa?",o:["Peculato.","Concussão.","Corrupção passiva.","Prevaricação.","Abandono de função."],e:"Só o peculato (art. 312, §2º)."}
+].map(x=>Object.assign(x,{b:1})));
+
+const TEMAS=[["339","Denunciação caluniosa, comunicação falsa e autoacusação"],["312","Peculato (culposo e mediante erro)"],["316","Concussão, excesso de exação e corrupção"],["311-A","Fraude em certames"],["299","Falsidade ideológica"],["297","Documento público e equiparados"],["294","Petrechos de falsificação"],["307","Falsa identidade x documento alheio"],["342","Falso testemunho e retratação"],["357","Exploração de prestígio"],["345","Exercício arbitrário e fraude processual"]];
+
+/* ================== MOTOR ================== */
+const A={}; ARTS.forEach(a=>{A[a.id]=a});
+VARAS.forEach(v=>v.arts.forEach(id=>{A[id].v=v.id}));
+ARTS.forEach(a=>{if(a.p) a.v=A[a.p].v});
+const P=id=>(A[id]&&A[id].p)||id;
+const AL=id=>A[id].al||("Art. "+id);
+const PENAS=[...new Set(ARTS.filter(a=>a.pena&&a.pena.indexOf("cominada")<0).map(a=>a.pena))];
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pick(a,n){return shuffle(a.slice()).slice(0,n)}
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const ALL_IDS=[];
+CASOS.forEach((c,i)=>ALL_IDS.push({id:"c:"+i,arts:[c.a],b:c.b}));
+VF.forEach((c,i)=>ALL_IDS.push({id:"v:"+i,arts:[c.a],b:c.b}));
+LAC.forEach((c,i)=>ALL_IDS.push({id:"l:"+i,arts:[c.a],b:c.b}));
+QS.forEach((c,i)=>ALL_IDS.push({id:"q:"+i,arts:c.a,b:c.b}));
+ARTS.forEach(a=>{if(a.noq) return; ALL_IDS.push({id:"n:"+a.id,arts:[a.id]}); if(a.pena&&a.pena.indexOf("cominada")<0) ALL_IDS.push({id:"p:"+a.id,arts:[a.id]}); if(a.r) ALL_IDS.push({id:"r:"+a.id,arts:[a.id]});});
+const idsWhere=f=>ALL_IDS.filter(f).map(x=>x.id);
+
+function artExplain(a){return `${AL(a.id)} — ${a.n}. ${a.pena?("Pena: "+a.pena+"."):""}`}
+
+function buildQ(id){
+  const [k,r]=[id.slice(0,1),id.slice(2)];
+  if(k==="c"){const c=CASOS[+r]; const op=shuffle(c.op.slice());
+    return {id,chip:"Caso no balcão",prompt:"Qual crime foi praticado?",doc:esc(c.t),opts:op.map(x=>A[x].n),ans:op.indexOf(c.a),exp:c.e,arts:[c.a]};}
+  if(k==="v"){const c=VF[+r];
+    return {id,chip:"Certo ou errado",prompt:esc(c.s),opts:["Certo","Errado"],ans:c.v?0:1,two:1,exp:c.e,arts:[c.a]};}
+  if(k==="l"){const c=LAC[+r]; const op=shuffle([c.ok,...c.x]);
+    return {id,chip:"Lei seca",prompt:"Complete com o termo exato da lei:",doc:esc(c.t).replace("___",'<span class="gap">?</span>'),opts:op,ans:op.indexOf(c.ok),exp:"Texto da lei: “"+esc(c.t.replace("___",c.ok))+"”",arts:[c.a]};}
+  if(k==="q"){const c=QS[+r]; const op=shuffle(c.o.map((t,i)=>({t,i})));
+    return {id,chip:"Estilo VUNESP",prompt:esc(c.p),opts:op.map(x=>x.t),ans:op.findIndex(x=>x.i===0),letters:1,exp:c.e,arts:c.a};}
+  const a=A[r];
+  if(k==="p"){const others=PENAS.filter(p=>p!==a.pena); const same=shuffle(others.filter(p=>p[0]===a.pena[0])); const diff=shuffle(others.filter(p=>p[0]!==a.pena[0]));
+    const ds=[...same.slice(0,2),...diff.slice(0,1)]; while(ds.length<3) ds.push(shuffle(others).find(p=>ds.indexOf(p)<0));
+    const op=shuffle([a.pena,...ds]);
+    return {id,chip:"Pena certa",prompt:`Qual é a pena de <b>${a.n}</b> (${AL(a.id)})?`,opts:op,ans:op.indexOf(a.pena),exp:artExplain(a),arts:[a.id]};}
+  if(k==="n"){const pool=ARTS.filter(x=>!x.noq&&x.id!==a.id&&x.n!==a.n); const near=shuffle(pool.filter(x=>x.v===a.v)); const far=shuffle(pool.filter(x=>x.v!==a.v));
+    const ds=[...near.slice(0,2),...far].slice(0,3).map(x=>x.n); const op=shuffle([a.n,...ds]);
+    return {id,chip:"Que crime é esse?",prompt:"Qual é o nome deste crime?",doc:esc(a.t),opts:op,ans:op.indexOf(a.n),exp:artExplain(a),arts:[a.id]};}
+  if(k==="r"){return {id,chip:"Reclusão ou detenção?",prompt:`<b>${a.n}</b> (${AL(a.id)}): a pena é de…`,opts:["Reclusão","Detenção"],ans:a.r==="R"?0:1,two:1,exp:"Pena: "+a.pena+".",arts:[a.id]};}
+}
+
+/* ================== ESTADO ================== */
+const KEY="gabarito-penal-v1";
+const IN_CLAUDE=/claude/i.test(location.hostname);
+const LEVELS=[[0,"Estagiário"],[300,"Escrevente Substituto"],[800,"Escrevente Técnico"],[1600,"Chefe de Seção"],[3000,"Coordenador"],[5000,"Diretor de Cartório"],[8000,"Juiz de Direito"],[12000,"Desembargador"]];
+const ACH=[
+ {id:"primeira",n:"Primeira sentença",d:"Termine uma rodada"},
+ {id:"combo10",n:"Combo 10",d:"10 acertos seguidos"},
+ {id:"vara3",n:"Vara impecável",d:"3 estrelas numa vara"},
+ {id:"todas",n:"Todas as varas",d:"Conclua as 9 varas"},
+ {id:"chefe",n:"Aprovado",d:"70% no Simulado final"},
+ {id:"relampago20",n:"Raio",d:"20 acertos no Relâmpago"},
+ {id:"balcao15",n:"Balcão de ferro",d:"15 casos no Balcão"},
+ {id:"pena10",n:"Dosimetria",d:"10 penas seguidas"},
+ {id:"streak3",n:"Três dias",d:"3 dias seguidos"},
+ {id:"streak7",n:"Semana cheia",d:"7 dias seguidos"},
+ {id:"revisor",n:"Revisor",d:"Limpe 10 itens da revisão"},
+ {id:"mestre",n:"Doutrinador",d:"Domine 10 artigos"},
+ {id:"centena",n:"Centena",d:"100 acertos no total"},
+ {id:"mil",n:"Mil acertos",d:"1000 acertos no total"}
+];
+function fresh(){return {xp:0,streak:0,last:null,stars:{},best:{balcao:0,pena:0,relampago:0},m:{},srs:{},ach:{},day:{d:null,ans:0,camp:0,rel:0,done:{}},tot:{ans:0,ok:0,cleared:0},sound:true,updated:0}}
+function merge(o){const f=fresh(),s=Object.assign(f,o||{});s.best=Object.assign(fresh().best,s.best||{});s.day=Object.assign(fresh().day,s.day||{});s.day.done=s.day.done||{};s.tot=Object.assign(fresh().tot,s.tot||{});return s}
+let S=fresh();
+function loadLocal(){try{const r=localStorage.getItem(KEY);if(r)S=merge(JSON.parse(r))}catch(e){}}
+function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let remoteRef=null,writing=false,again=false,saveT=null,syncMode="aparelho";
+function save(){S.updated=Date.now();saveLocal();if(remoteRef){clearTimeout(saveT);saveT=setTimeout(flush,1500)}}
+async function flush(){if(!remoteRef)return;if(writing){again=true;return}writing=true;try{await remoteRef.set({state:JSON.parse(JSON.stringify(S))});syncMode="conta"}catch(e){}writing=false;if(again){again=false;flush()}}
+function withTimeout(p,ms){return Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))])}
+async function initRemote(){
+  try{
+    if(!window.claude||!window.claude.use)return;
+    const db=await window.claude.use("db"), user=await window.claude.use("user");
+    if(!db||!user)return;
+    const uid=await withTimeout(user.id(),10000); if(!uid)return;
+    const ref=db.doc("data/users/"+uid+"/progresso");
+    const snap=await withTimeout(ref.get(),10000); if(!snap)return;
+    remoteRef=ref; syncMode="conta";
+    const st=snap.exists&&snap.data()&&snap.data().state;
+    if(st&&(st.updated||0)>(S.updated||0)){S=merge(JSON.parse(JSON.stringify(st)));saveLocal()}
+    else if((S.updated||0)>0) flush();
+    if(screen==="home")renderHome();
+  }catch(e){}
+}
+
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+function touchDay(){const t=today();if(S.day.d!==t){S.day={d:t,ans:0,camp:0,rel:0,done:{}}}
+  if(S.last!==t){const y=new Date();y.setDate(y.getDate()-1);const ys=y.getFullYear()+"-"+String(y.getMonth()+1).padStart(2,"0")+"-"+String(y.getDate()).padStart(2,"0");S.streak=(S.last===ys)?S.streak+1:1;S.last=t;if(S.streak>=3)unlock("streak3");if(S.streak>=7)unlock("streak7")}}
+function dayView(){return S.day.d===today()?S.day:{ans:0,camp:0,rel:0,done:{}}}
+function lvl(xp){let i=0;LEVELS.forEach((l,k)=>{if(xp>=l[0])i=k});const nx=LEVELS[i+1];return {i,name:LEVELS[i][1],base:LEVELS[i][0],next:nx?nx[0]:null}}
+const MISSIONS=[
+ {id:"m1",t:"Responda 20 questões",ok:d=>d.ans>=20,prog:d=>Math.min(20,d.ans)+"/20"},
+ {id:"m2",t:"Jogue uma rodada da campanha",ok:d=>d.camp>=1,prog:d=>Math.min(1,d.camp)+"/1"},
+ {id:"m3",t:"Encare o Relâmpago",ok:d=>d.rel>=1,prog:d=>Math.min(1,d.rel)+"/1"}
+];
+let pendingAch=[];
+function unlock(id){if(S.ach[id])return;S.ach[id]=Date.now();S.xp+=25;pendingAch.push(id)}
+function mastery(arts,right){[...new Set(arts.map(P))].forEach(p=>{const m=S.m[p]||{s:0,c:0,w:0};if(right){m.s=Math.min(5,m.s+1);m.c++}else{m.s=Math.max(0,m.s-2);m.w++}S.m[p]=m})}
+const IV=[0,1,3,7];
+function srsUpdate(id,right){const e=S.srs[id],now=Date.now();if(!right){S.srs[id]={b:0,due:now};return}if(e){e.b++;if(e.b>=4){delete S.srs[id];S.tot.cleared++;if(S.tot.cleared>=10)unlock("revisor")}else e.due=now+IV[e.b]*864e5}}
+const dueIds=()=>Object.keys(S.srs).filter(k=>S.srs[k].due<=Date.now()&&ALL_IDS.some(x=>x.id===k));
+
+/* ================== SOM ================== */
+let AC=null;
+function sfx(kind){if(!S.sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;
+  const seq={ok:[[660,0],[990,.08]],bad:[[180,0],[140,.1]],up:[[523,0],[659,.09],[784,.18],[1046,.27]],tick:[[880,0]]}[kind];
+  seq.forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=kind==="bad"?"sawtooth":"triangle";o.frequency.value=f;g.gain.setValueAtTime(.0001,t+d);g.gain.exponentialRampToValueAtTime(kind==="bad"?.08:.14,t+d+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d+.16);o.connect(g).connect(AC.destination);o.start(t+d);o.stop(t+d+.18)})}catch(e){}}
+
+/* ================== TELAS ================== */
+const app=document.getElementById("app");
+let screen="home";
+const ICON={
+ balcao:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>',
+ pena:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 21h14M6 7h12M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></svg>',
+ raio:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+ rev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>',
+ sim:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v3H9zM6 5H5v16h14V5h-1"/><path d="m9 13 2 2 4-4"/></svg>',
+ lei:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 7h6"/></svg>'
+};
+function stars(n){return [1,2,3].map(i=>i<=n?"★":'<span class="off">★</span>').join("")}
+function unlockedVara(id){return id===1||(S.stars[id-1]||0)>=1}
+function allVarasDone(){return VARAS.every(v=>(S.stars[v.id]||0)>=1)}
+
+function renderHome(){
+  screen="home";
+  const L=lvl(S.xp),pct=L.next?((S.xp-L.base)/(L.next-L.base)*100):100,d=dayView(),due=dueIds().length;
+  const nextV=VARAS.find(v=>(S.stars[v.id]||0)<1);
+  const parents=ARTS.filter(a=>!a.p);
+  app.innerHTML=`<div class="wrap">
+  <div class="top"><div class="brand"><h1 class="display">Gabarito Penal</h1><small>Escrevente Técnico Judiciário · Direito Penal</small></div>
+   <button class="icon" id="snd" aria-label="Som">${S.sound?"🔊":"🔇"}</button></div>
+
+  <div class="ficha">
+   <div class="seal"><div><b class="num">${L.i+1}</b><span>nível</span></div></div>
+   <div style="min-width:0"><p class="eyebrow" style="color:inherit;opacity:.75">Servidor(a) em exercício</p><h2>${L.name}</h2>
+    <div class="xpbar"><i style="width:${pct}%"></i></div>
+    <div class="fmeta num"><span>${S.xp} XP${L.next?` · faltam ${L.next-S.xp}`:""}</span><span>${S.streak} dia(s) seguidos</span><span>${S.tot.ok} acertos</span></div>
+   </div>
+  </div>
+
+  <button class="cta" id="camp"><div class="badge">${nextV?nextV.id:"★"}</div><div><b>${nextV?("Campanha · "+nextV.n):(S.ach.chefe?"Campanha concluída":"Simulado final liberado")}</b><span>${nextV?nextV.s:"Hora do chefão: 20 questões no estilo da prova"}</span></div><span class="go">›</span></button>
+
+  <button class="cta" id="banca"><div class="badge" style="background:var(--toga);color:var(--on-toga)">RX</div><div><b>Raio-X da Banca</b><span>15 questões sobre as pegadinhas que a VUNESP repete: formal x material, próprio x comum, culposo, qualificadora x aumento</span></div><span class="go">›</span></button>
+
+  <section><div class="shead"><h3>Pauta do dia</h3><span class="muted" style="font-size:.8rem">+30 XP cada</span></div>
+   <div class="pauta">${MISSIONS.map(m=>{const ok=!!d.done[m.id]||m.ok(d);return `<div class="mis ${ok?"done":""}"><span class="box">${ok?"✓":""}</span><span class="t">${m.t}</span><span class="x num">${m.prog(d)}</span></div>`}).join("")}</div>
+  </section>
+
+  <section><div class="shead"><h3>Modos de jogo</h3></div>
+   <div class="modes">
+    <button class="mode" data-m="balcao"><span class="ic">${ICON.balcao}</span><b>Caso no Balcão</b><span>Leia o caso e diga qual é o crime. 3 vidas.</span>${S.best.balcao?`<span class="rec">Recorde: ${S.best.balcao}</span>`:""}</button>
+    <button class="mode" data-m="pena"><span class="ic">${ICON.pena}</span><b>Pena Certa</b><span>Reclusão ou detenção? De quanto a quanto?</span>${S.best.pena?`<span class="rec">Recorde: ${S.best.pena}</span>`:""}</button>
+    <button class="mode" data-m="relampago"><span class="ic">${ICON.raio}</span><b>Relâmpago</b><span>60 segundos de certo ou errado. Erro custa 4 s.</span>${S.best.relampago?`<span class="rec">Recorde: ${S.best.relampago}</span>`:""}</button>
+    <button class="mode" data-m="revisao"><span class="ic">${ICON.rev}</span><b>Revisão</b><span>Seus erros voltam em 1, 3 e 7 dias até fixar.</span>${due?`<span class="pill num">${due}</span>`:""}</button>
+    <button class="mode" data-m="simulado"><span class="ic">${ICON.sim}</span><b>Simulado</b><span>20 questões misturadas, no ritmo da prova.</span></button>
+    <button class="mode" data-m="vade"><span class="ic">${ICON.lei}</span><b>Vade Mecum</b><span>Lei seca, penas e macetes de cada artigo.</span></button>
+   </div>
+  </section>
+
+  <section><div class="shead"><h3>O que mais cai</h3><span class="muted" style="font-size:.8rem">provas VUNESP 2010–2025</span></div>
+   <div class="pauta">${TEMAS.map(([id,t],k)=>`<button class="mis" data-tema="${id}" style="width:100%;background:none;border:0;border-bottom:1px dashed var(--line);text-align:left"><span class="box num" style="border-color:var(--toga);color:var(--toga);font-weight:800">${k+1}</span><span class="t">${t}</span><span class="x">treinar ›</span></button>`).join("")}</div>
+  </section>
+
+  <section><div class="shead"><h3>Mapa de domínio</h3><span class="muted" style="font-size:.8rem">toque para estudar</span></div>
+   <div class="heat">${parents.map(a=>{const m=S.m[a.id];const s=m?m.s:0;const weak=m&&m.w>m.c;return `<button class="ht h${s} ${weak?"bad":""}" data-art="${a.id}" aria-label="Art. ${a.id}, domínio ${s} de 5">${a.id}</button>`}).join("")}</div>
+   <div class="legend"><span>Cinza: não estudado</span><span>Verde: dominado</span><span>Contorno vermelho: mais erros que acertos</span></div>
+  </section>
+
+  <section><div class="shead"><h3>Carimbos</h3><span class="muted num" style="font-size:.8rem">${Object.keys(S.ach).length}/${ACH.length}</span></div>
+   <div class="stamps">${ACH.map(a=>`<div class="stp ${S.ach[a.id]?"on":""}"><i>${S.ach[a.id]?"✓":"?"}</i><b>${a.n}</b><span>${a.d}</span></div>`).join("")}</div>
+  </section>
+
+  <details class="howto"><summary>Como instalar no celular</summary>
+   ${/android/i.test(navigator.userAgent)
+     ?`<ol><li>Abra este link no Chrome.</li><li>Toque no menu (três pontinhos, no canto superior direito).</li><li>Escolha “Instalar app” (ou “Adicionar à tela inicial”).</li></ol>`
+     :`<p style="margin:10px 0 0"><b>iPhone</b></p><ol><li>Abra este link no Safari.</li><li>Toque no botão Compartilhar (quadrado com seta).</li><li>Escolha “Adicionar à Tela de Início”.</li></ol>
+       <p style="margin:10px 0 0"><b>Android</b></p><ol><li>Abra este link no Chrome.</li><li>Menu (três pontinhos) e depois “Instalar app”.</li></ol>`}
+   ${IN_CLAUDE?"":"<p style=\"margin:10px 0 0\">Daí em diante, abra sempre pelo ícone: é nele que o seu progresso fica guardado, e o app funciona até sem internet.</p>"}
+   <p class="muted" style="margin:10px 0 0">${syncMode==="conta"?"Seu progresso está salvo na sua conta Claude: continua no celular e no computador.":"Seu progresso está salvo neste aparelho. Faça um backup de vez em quando (abaixo)."}</p>
+  </details>
+
+  <details class="howto"><summary>Backup do progresso</summary>
+   <p class="muted" style="margin:10px 0">Copie o código e guarde onde quiser (Notas, e-mail para você mesmo). Para restaurar, ou para levar o progresso para outro aparelho, cole o código aqui.</p>
+   <div style="display:flex;flex-direction:column;gap:10px">
+    <button class="btn ghost" id="bkcopy">Copiar código de backup</button>
+    <label for="bkin" class="muted" style="font-size:.8rem">Código de backup</label>
+    <textarea id="bkin" class="search" rows="3" placeholder="Cole aqui um código que começa com GP1:"></textarea>
+    <button class="btn ghost" id="bkload">Restaurar este código</button>
+   </div>
+  </details>
+
+  <div class="foot"><span>Questões originais, escritas no estilo da banca VUNESP a partir do texto do Código Penal (arts. 293 a 359 do edital). O Raio-X da Banca e a lista “O que mais cai” foram montados a partir das 95 questões de Direito Penal para Escrevente listadas no Qconcursos (2010–2025). Confira sempre a lei seca atualizada.</span>
+   <button id="reset">Apagar meu progresso</button></div>
+  </div>`;
+  document.getElementById("snd").onclick=()=>{S.sound=!S.sound;save();renderHome()};
+  const bkin=document.getElementById("bkin");
+  document.getElementById("bkcopy").onclick=()=>{const code="GP1:"+btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+    const fallback=()=>{bkin.value=code;bkin.focus();bkin.select();toast("Código no campo abaixo: selecione e copie")};
+    try{navigator.clipboard.writeText(code).then(()=>toast("Código copiado. Guarde em um lugar seguro."),fallback)}catch(e){fallback()}};
+  document.getElementById("bkload").onclick=()=>{const v=bkin.value.trim();
+    try{if(!v.startsWith("GP1:"))throw 0;const o=JSON.parse(decodeURIComponent(escape(atob(v.slice(4)))));if(typeof o!=="object"||o.xp===undefined)throw 0;
+      S=merge(o);save();toast("Progresso restaurado");renderHome()}catch(e){toast("Código inválido. Ele deve começar com GP1: e estar completo.")}};
+  document.getElementById("camp").onclick=()=>renderMap();
+  document.getElementById("banca").onclick=()=>startMode("banca");
+  app.querySelectorAll("[data-tema]").forEach(b=>b.onclick=()=>startArt(b.dataset.tema));
+  app.querySelectorAll(".mode").forEach(b=>b.onclick=()=>startMode(b.dataset.m));
+  app.querySelectorAll(".ht").forEach(b=>b.onclick=()=>renderVade("",b.dataset.art));
+  const rs=document.getElementById("reset");let arm=false;
+  rs.onclick=()=>{if(!arm){arm=true;rs.textContent="Toque de novo para apagar tudo";rs.style.color="var(--stamp)";rs.style.borderColor="var(--stamp)";return}S=fresh();save();toast("Progresso apagado");renderHome()};
+}
+
+/* Navegação: cada tela fora do início ganha uma entrada no histórico, para o gesto/botão "voltar" do celular trazer ao início */
+let histOn=false;
+function pushNav(){if(histOn)return;try{history.pushState({gp:1},"");histOn=true}catch(e){}}
+function goHome(){if(histOn){histOn=false;try{history.back();setTimeout(()=>{if(screen!=="home")renderHome()},350);return}catch(e){}}renderHome()}
+window.addEventListener("popstate",()=>{histOn=false;if(screen==="home")return;if(screen==="round"&&R&&!R.ended){pushNav();askQuit();return}renderHome()});
+function bar(t,s,label){return `<div class="bar"><button class="back" id="back"><span class="ch">‹</span>${label||"Início"}</button><div class="brand"><h1 class="display">${t}</h1>${s?`<small>${s}</small>`:""}</div></div>`}
+
+function renderMap(){
+  screen="map";pushNav();
+  app.innerHTML=`<div class="wrap">
+   ${bar("Campanha","Acerte 50% para abrir a próxima vara")}
+   <div class="trail">
+   ${VARAS.map(v=>{const st=S.stars[v.id]||0,open=unlockedVara(v.id);return `<button class="node ${open?"":"lock"} ${st?"done":""}" data-v="${v.id}" ${open?"":'data-lock="1" aria-disabled="true"'}><span class="dot">${open?v.id:"🔒"}</span><span class="info"><b>${v.id}ª Vara · ${v.n}</b><span>${v.s}</span><br><span class="st">${open?stars(st):"Trancada"}</span></span></button>`}).join("")}
+   <button class="node boss ${allVarasDone()?"":"lock"}" data-v="final" ${allVarasDone()?"":'data-lock="1" aria-disabled="true"'}><span class="dot">${allVarasDone()?"!":"🔒"}</span><span class="info"><b>Simulado final</b><span>20 questões de todo o edital · meta: 70%</span><br><span class="st">${allVarasDone()?stars(S.stars.final||0):"Abre depois das 9 varas"}</span></span></button>
+   </div></div>`;
+  document.getElementById("back").onclick=goHome;
+  app.querySelectorAll(".node").forEach(b=>b.onclick=()=>{const v=b.dataset.v;
+    if(b.dataset.lock){toast(v==="final"?"Conclua as 9 varas para liberar o Simulado final":"Acerte 50% na "+(+v-1)+"ª Vara para abrir esta");return}
+    v==="final"?startMode("final"):startVara(+v)});
+}
+function renderIntro(title,lines,go){
+  screen="intro";pushNav();
+  app.innerHTML=`<div class="wrap">${bar(title,"Antes de começar")}
+   <div class="sent" style="align-items:stretch"><ul class="rules">${lines.map(l=>`<li>${l}</li>`).join("")}</ul></div>
+   <button class="btn" id="go">Começar</button></div>`;
+  document.getElementById("back").onclick=goHome;
+  document.getElementById("go").onclick=go;
+}
+
+function renderVade(q,openId){
+  screen="vade";pushNav();
+  app.innerHTML=`<div class="wrap">
+   ${bar("Vade Mecum","Arts. 293 a 359 do Código Penal")}
+   <input class="search" id="q" type="search" placeholder="Buscar: peculato, 317, testemunha…" value="${esc(q||"")}" autocomplete="off">
+   <div id="list" style="display:flex;flex-direction:column;gap:8px"></div></div>`;
+  document.getElementById("back").onclick=goHome;
+  const inp=document.getElementById("q");
+  const draw=()=>{const s=norm(inp.value.trim());let html="";
+    VARAS.forEach(v=>{const arts=ARTS.filter(a=>a.v===v.id&&(!s||norm(a.id+" "+a.n+" "+a.t+" "+(a.d||"")).includes(s)));if(!arts.length)return;
+      html+=`<p class="vhead">${v.id}ª Vara · ${v.n}</p>`;
+      html+=arts.map(a=>{const m=S.m[P(a.id)];return `<details class="art" id="a-${a.id}" ${a.id===openId?"open":""}><summary><span class="n">${a.al?a.al.replace("Art. ",""):a.id}</span><span class="t">${a.n}</span><span class="mdot h${m?m.s:0}"></span></summary>
+      <div class="abody"><div class="doc" style="font-size:.9rem">${esc(a.t)}</div>
+      ${a.pena?`<div class="pena">${a.r?`<span class="reg ${a.r}">${a.r==="R"?"RECLUSÃO":"DETENÇÃO"}</span>`:""}<span>${a.pena}</span></div>`:""}
+      ${a.o&&a.o.length?`<ul>${a.o.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
+      ${a.d?`<div class="dica"><b>Macete:</b> ${esc(a.d)}</div>`:""}
+      ${a.p||!ALL_IDS.some(x=>x.arts.some(y=>P(y)===a.id))?"":`<button class="btn ghost" data-train="${a.id}">Treinar este artigo</button>`}</div></details>`}).join("")});
+    document.getElementById("list").innerHTML=html||`<p class="muted">Nada encontrado para essa busca.</p>`;
+    document.querySelectorAll("[data-train]").forEach(b=>b.onclick=()=>startArt(b.dataset.train));};
+  inp.oninput=draw; draw();
+  if(openId){const el=document.getElementById("a-"+openId);if(el)setTimeout(()=>el.scrollIntoView({block:"center"}),30)}
+}
+
+/* ================== RODADAS ================== */
+let R=null,tInt=null;
+function startVara(v){const vara=VARAS.find(x=>x.id===v);const ids=idsWhere(x=>x.arts.some(a=>vara.arts.includes(P(a))));
+  startRound({mode:"vara",vara:v,title:v+"ª Vara · "+vara.n,ids:balance(ids,10)})}
+function startArt(p){const ids=idsWhere(x=>x.arts.some(a=>P(a)===p));startRound({mode:"art",title:"Treino · "+A[p].n,ids:pick(ids,Math.min(8,ids.length))})}
+function balance(ids,n){const by={};ids.forEach(id=>{(by[id[0]]=by[id[0]]||[]).push(id)});Object.values(by).forEach(shuffle);const out=[];const keys=shuffle(Object.keys(by));
+  while(out.length<n&&keys.some(k=>by[k].length)){keys.forEach(k=>{if(out.length<n&&by[k].length)out.push(by[k].pop())})}return shuffle(out)}
+function startMode(m){
+  if(m==="vade")return renderVade("");
+  if(m==="balcao")return startRound({mode:"balcao",title:"Caso no Balcão",ids:shuffle(idsWhere(x=>x.id[0]==="c"||x.id[0]==="n")),endless:1,lives:3});
+  if(m==="pena")return startRound({mode:"pena",title:"Pena Certa",ids:shuffle(idsWhere(x=>x.id[0]==="p"||x.id[0]==="r")),endless:1,lives:3});
+  if(m==="relampago")return renderIntro("Relâmpago",["Você tem <b>60 segundos</b>.","Cada item é <b>Certo ou Errado</b>, ou <b>Reclusão ou Detenção</b>.","Cada acerto vale 1 ponto. Acertos seguidos aumentam o XP.","Cada erro tira <b>4 segundos</b> do relógio.","No fim, você vê a explicação de tudo que errou."],()=>startRelampago());
+  if(m==="banca")return startRound({mode:"banca",title:"Raio-X da Banca",ids:balance(idsWhere(x=>x.b),15)});
+  if(m==="revisao"){const d=dueIds();if(!d.length){toast("Nada para revisar agora. Seus erros aparecem aqui.");return}return startRound({mode:"revisao",title:"Revisão",ids:shuffle(d).slice(0,20)})}
+  if(m==="simulado"||m==="final"){const q=pick(idsWhere(x=>x.id[0]==="q"),11),c=pick(idsWhere(x=>x.id[0]==="c"),5),v=pick(idsWhere(x=>x.id[0]==="v"||x.id[0]==="l"),4);
+    return startRound({mode:m,title:m==="final"?"Simulado final":"Simulado",ids:shuffle([...q,...c,...v])})}
+}
+function startRelampago(){startRound({mode:"relampago",title:"Relâmpago",ids:shuffle(idsWhere(x=>x.id[0]==="v"||x.id[0]==="r")),endless:1,timer:60,quick:1,base:5})}
+function startRound(cfg){clearInterval(tInt);pendingAch=[];
+  R={cfg,idx:0,ok:0,bad:0,combo:0,maxCombo:0,lives:cfg.lives||0,xp:0,ans:0,mistakes:[],queue:cfg.ids.slice(),startLv:lvl(S.xp).i};
+  if(cfg.timer){R.deadline=Date.now()+cfg.timer*1000;tInt=setInterval(tick,200)}
+  nextQ()}
+function mult(){return 1+Math.min(4,Math.floor(R.combo/5))*.5}
+function nextQ(){if(!R)return;const c=R.cfg;
+  if(c.endless){if(!R.queue.length)R.queue=shuffle(c.ids.slice())}else if(R.idx>=R.queue.length)return endRound();
+  const id=c.endless?R.queue.shift():R.queue[R.idx];R.q=buildQ(id);R.answered=false;screen="round";renderRound();window.scrollTo(0,0)}
+function statusHTML(){const c=R.cfg;let s="";
+  if(c.lives)s+=`<span class="hearts" aria-label="${R.lives} vidas">${"♥".repeat(R.lives)}${"♡".repeat(Math.max(0,3-R.lives))}</span>`;
+  if(c.timer)s+=`<span class="num" id="tsec">${Math.max(0,Math.ceil((R.deadline-Date.now())/1000))}s</span>`;
+  if(!c.endless)s+=`<span class="num">${Math.min(R.idx+1,R.queue.length)}/${R.queue.length}</span>`;
+  else if(!c.timer)s+=`<span class="num">${R.ok} pts</span>`;
+  if(c.timer)s+=`<span class="num">${R.ok} pts</span>`;
+  return s}
+function askQuit(){
+  if(!R||R.ended){goHome();return}
+  if(R.ans===0){clearInterval(tInt);R=null;goHome();return}
+  if(document.getElementById("quitbar"))return;
+  if(R.cfg.timer){R.pausedLeft=R.deadline-Date.now();clearInterval(tInt)}
+  const d=document.createElement("div");d.id="quitbar";d.className="quitbar";
+  d.innerHTML=`<b>Sair da rodada?</b><span>Suas ${R.ans} resposta(s) já estão salvas. Você vai ver o resultado parcial.${R.cfg.timer?" O relógio está pausado.":""}</span><div class="row"><button class="btn red" id="qyes">Sair</button><button class="btn ghost" id="qno">Continuar</button></div>`;
+  document.querySelector(".rbar").after(d);window.scrollTo(0,0);
+  document.getElementById("qyes").onclick=()=>endRound();
+  document.getElementById("qno").onclick=()=>{d.remove();
+    if(R.cfg.timer){R.deadline=Date.now()+R.pausedLeft;tInt=setInterval(tick,200)}
+    if(R.cfg.quick&&R.answered)nextQ()};
+}
+function renderRound(){const q=R.q,c=R.cfg;pushNav();
+  app.innerHTML=`<div class="wrap">
+   <div class="rbar"><button class="back" id="quit"><span class="ch">‹</span>Sair</button><div class="rtitle">${c.title}</div><div class="rstat" id="rstat">${statusHTML()}</div></div>
+   ${c.timer?`<div class="tbar" id="tbar"><i id="tfill" style="width:${Math.max(0,(R.deadline-Date.now())/(c.timer*10))}%"></i></div>`:(!c.endless?`<div class="pbar"><i style="width:${R.idx/R.queue.length*100}%"></i></div>`:"")}
+   <div class="combo ${R.combo>=3?"on":""}" id="combo">${R.combo>=2?`Combo ${R.combo} · XP x${mult().toString().replace(".",",")}`:"&nbsp;"}</div>
+   <article class="qcard" id="qcard"><span class="chip">${q.chip}</span><p class="prompt">${q.prompt}</p>${q.doc?`<div class="doc">${q.doc}</div>`:""}
+    <div class="opts ${q.two?"two":""}">${q.opts.map((o,i)=>`<button class="opt" data-i="${i}">${q.two?"":`<span class="lt">${"ABCDE"[i]}</span>`}<span>${esc(o)}</span></button>`).join("")}</div>
+   </article><div id="fb"></div></div>`;
+  document.getElementById("quit").onclick=askQuit;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function tick(){if(!R||R.ended)return clearInterval(tInt);const left=R.deadline-Date.now();const f=document.getElementById("tfill"),s=document.getElementById("tsec"),tb=document.getElementById("tbar");
+  if(f)f.style.width=Math.max(0,left/(R.cfg.timer*10))+"%";if(s)s.textContent=Math.max(0,Math.ceil(left/1000))+"s";if(tb)tb.classList.toggle("low",left<10000);
+  if(left<=0){clearInterval(tInt);endRound()}}
+function answer(i){if(!R||R.answered||R.ended)return;R.answered=true;const q=R.q,c=R.cfg,right=i===q.ans;
+  touchDay();R.ans++;S.day.ans++;S.tot.ans++;
+  if(right){R.ok++;S.tot.ok++;R.combo++;R.maxCombo=Math.max(R.maxCombo,R.combo);const g=Math.round((c.base||10)*mult());R.xp+=g;S.xp+=g;R.gain=g;sfx("ok")}
+  else{R.bad++;R.combo=0;R.gain=0;if(c.lives)R.lives--;if(c.timer)R.deadline-=4000;R.mistakes.push({q,chosen:i});sfx("bad")}
+  if(R.combo>=10)unlock("combo10");if(S.tot.ok>=100)unlock("centena");if(S.tot.ok>=1000)unlock("mil");
+  if(c.mode==="pena"&&R.combo>=10)unlock("pena10");
+  mastery(q.arts,right);srsUpdate(q.id,right);
+  if(Object.values(S.m).filter(m=>m.s>=5).length>=10)unlock("mestre");
+  save();
+  if(!c.endless)R.idx++;
+  const card=document.getElementById("qcard");
+  app.querySelectorAll(".opt").forEach((b,k)=>{b.disabled=true;if(k===q.ans)b.classList.add("ok");else if(k===i)b.classList.add("bad");else b.classList.add("dim")});
+  const st=document.createElement("div");st.className="stampmark "+(right?"ok":"bad");st.textContent=right?"DEFERIDO":"INDEFERIDO";card.appendChild(st);
+  if(!right)card.classList.add("shake");
+  document.getElementById("rstat").innerHTML=statusHTML();
+  const cb=document.getElementById("combo");cb.className="combo "+(R.combo>=3?"on":"");cb.innerHTML=R.combo>=2?`Combo ${R.combo} · XP x${mult().toString().replace(".",",")}`:"&nbsp;";
+  if(c.quick){setTimeout(()=>{if(!R||R.ended||document.getElementById("quitbar"))return;if(Date.now()>=R.deadline)endRound();else nextQ()},right?380:900);return}
+  const over=c.lives&&R.lives<=0;const last=!c.endless&&R.idx>=R.queue.length;
+  const a=A[q.arts[0]];
+  document.getElementById("fb").innerHTML=`<div class="fb ${right?"":"bad"}">
+    <h4>${right?"Deferido!":"Indeferido."} ${right?`<span class="gain">+${R.gain} XP</span>`:""}</h4>
+    <p>${q.exp}</p>
+    <span class="fund">Fundamento: ${q.arts.slice(0,1).map(x=>AL(x)+" — "+A[x].n).join("")}</span>
+    ${!right&&a.d?`<div class="dica"><b>Macete:</b> ${esc(a.d)}</div>`:""}
+    <button class="btn next" id="nx">${over?"Ver sentença":last?"Ver resultado":"Próxima"}</button></div>`;
+  document.getElementById("nx").onclick=()=>{over?endRound():nextQ()};
+  setTimeout(()=>document.getElementById("fb").scrollIntoView({behavior:"smooth",block:"nearest"}),60);
+}
+function endRound(){if(!R||R.ended)return;R.ended=true;clearInterval(tInt);const c=R.cfg,acc=R.ans?R.ok/R.ans:0;let st=null;
+  touchDay();
+  if(c.mode==="vara"||c.mode==="final"){st=acc>=.9?3:acc>=.7?2:acc>=.5?1:0;const k=c.mode==="final"?"final":c.vara;S.stars[k]=Math.max(S.stars[k]||0,st);S.day.camp++;
+    if(st===3&&c.mode==="vara")unlock("vara3");if(allVarasDone())unlock("todas");if(c.mode==="final"&&acc>=.7)unlock("chefe")}
+  if(c.mode==="simulado"&&acc>=.7)unlock("chefe");
+  let rec=false;
+  if(c.mode==="balcao"&&R.ok>S.best.balcao){S.best.balcao=R.ok;rec=true}
+  if(c.mode==="pena"&&R.ok>S.best.pena){S.best.pena=R.ok;rec=true}
+  if(c.mode==="relampago"){S.day.rel++;if(R.ok>S.best.relampago){S.best.relampago=R.ok;rec=true}if(R.ok>=20)unlock("relampago20")}
+  if(c.mode==="balcao"&&R.ok>=15)unlock("balcao15");
+  if(R.ans>0)unlock("primeira");
+  const missionsNow=[];MISSIONS.forEach(m=>{if(!S.day.done[m.id]&&m.ok(S.day)){S.day.done[m.id]=1;S.xp+=30;missionsNow.push(m.t)}});
+  save();
+  const lvUp=lvl(S.xp).i>R.startLv;if(lvUp)sfx("up");
+  const head=acc>=.9?"Aprovado com louvor":acc>=.7?"Aprovado":acc>=.5?"Aprovado com ressalvas":"Reprovado — recurso cabível";
+  const achNow=pendingAch.slice();pendingAch=[];
+  const mk=R.mistakes;
+  screen="end";pushNav();
+  app.innerHTML=`<div class="wrap">
+   ${bar("Resultado",c.title)}
+   <div class="sent"><p class="eyebrow">Sentença · ${c.title}</p><h2 class="display">${head}</h2>
+    ${st!==null?`<div class="stars">${stars(st)}</div>`:""}
+    ${rec?`<div class="banner">Novo recorde: ${R.ok}!</div>`:""}
+    <div class="kpis num"><div class="kpi"><b>${R.ok}/${R.ans}</b><span>acertos</span></div><div class="kpi"><b>${Math.round(acc*100)}%</b><span>precisão</span></div><div class="kpi"><b>${R.maxCombo}</b><span>combo máx.</span></div><div class="kpi"><b>+${R.xp}</b><span>XP</span></div></div>
+    ${lvUp?`<div class="banner">Promoção! Agora você é ${lvl(S.xp).name}.</div>`:""}
+    ${missionsNow.map(t=>`<div class="banner" style="background:var(--ok);color:#fff">Pauta cumprida: ${t} (+30 XP)</div>`).join("")}
+    ${achNow.length?`<div class="stamps" style="width:100%">${achNow.map(id=>{const a=ACH.find(x=>x.id===id);return `<div class="stp on"><i>✓</i><b>${a.n}</b><span>+25 XP</span></div>`}).join("")}</div>`:""}
+    ${c.mode==="vara"&&st<1?`<p class="muted" style="margin:0">Faça 50% ou mais para abrir a próxima vara. Dica: leia os macetes no Vade Mecum.</p>`:""}
+   </div>
+   <div class="row"><button class="btn" id="again">Jogar de novo</button><button class="btn ghost" id="home">Início</button></div>
+   ${c.mode==="vara"||c.mode==="final"?`<button class="btn ghost" id="map">Voltar ao mapa da campanha</button>`:""}
+   ${c.mode==="art"?`<button class="btn ghost" id="vm">Voltar ao Vade Mecum</button>`:""}
+   ${mk.length?`<section><div class="shead"><h3>Para não errar de novo</h3><span class="muted" style="font-size:.8rem">já foram para a Revisão</span></div><div class="errs">
+     ${mk.map(m=>`<div class="err"><span class="q">${m.q.doc&&m.q.chip!=="Lei seca"?m.q.doc:m.q.prompt}</span>${m.q.chip==="Lei seca"?`<span class="muted">${m.q.doc}</span>`:""}<span class="a">Resposta: ${esc(m.q.opts[m.q.ans])}</span><span>${m.q.exp}</span></div>`).join("")}
+   </div></section>`:""}
+  </div>`;
+  window.scrollTo(0,0);
+  const cfg=c;R=null;
+  document.getElementById("again").onclick=()=>{if(cfg.mode==="vara")startVara(cfg.vara);else if(cfg.mode==="art")startArt(P(cfg.ids.length?ALL_IDS.find(x=>x.id===cfg.ids[0]).arts[0]:"312"));else startMode(cfg.mode)};
+  document.getElementById("home").onclick=goHome;
+  document.getElementById("back").onclick=goHome;
+  const mp=document.getElementById("map");if(mp)mp.onclick=renderMap;
+  const vm=document.getElementById("vm");if(vm)vm.onclick=()=>renderVade("",P(ALL_IDS.find(x=>x.id===cfg.ids[0]).arts[0]));
+}
+function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2700)}
+
+/* ================== BOOT ================== */
+function start(){loadLocal();renderHome();setTimeout(initRemote,0)
+  if(!IN_CLAUDE&&(location.protocol==="https:"||location.hostname==="localhost")&&"serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{})}
+if(window.claude&&window.claude.hot&&window.claude.hot.ready)window.claude.hot.ready(start);else start();
+</script>
+
+</body></html>
